@@ -11,7 +11,7 @@ const CSP = [
   "default-src 'self'",
   "script-src 'self'",
   "style-src 'self' 'unsafe-inline'",
-  "font-src 'self'",
+  "font-src 'self' data:",
   "img-src 'self' data: https://i.ytimg.com",
   "frame-src https://www.youtube-nocookie.com",
   "connect-src 'self' https://i.ytimg.com",
