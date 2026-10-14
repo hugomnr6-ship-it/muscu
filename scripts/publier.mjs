@@ -8,7 +8,9 @@ const dist = fileURLToPath(new URL('../dist', import.meta.url))
 const DEPOT = 'https://github.com/hugomnr6-ship-it/muscu.git'
 
 function lancer(commande, args, options = {}) {
-  execFileSync(commande, args, { stdio: 'inherit', shell: process.platform === 'win32', ...options })
+  // npm est un script .cmd sous Windows : il lui faut un shell ; git non (et le shell couperait le message).
+  const shell = commande === 'npm' && process.platform === 'win32'
+  execFileSync(commande, args, { stdio: 'inherit', shell, ...options })
 }
 
 lancer('npm', ['test'], { cwd: racine })
