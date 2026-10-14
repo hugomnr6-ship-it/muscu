@@ -16,9 +16,10 @@ npm run icons      # régénère les icônes PNG
 
 Ajouter `?date=2026-10-16` à l'URL simule un autre jour.
 
-## Déploiement
+## Publication
 
-Chaque push sur `main` lance `.github/workflows/deploy.yml` : tests, build avec `BASE_PATH=/<nom-du-dépôt>/`, puis publication sur GitHub Pages (Settings → Pages → Source : GitHub Actions).
+`npm run publier` lance les tests, construit l'appli pour GitHub Pages (`/muscu/`) et pousse le dossier `dist` sur la branche `gh-pages`.
+Adresse : https://hugomnr6-ship-it.github.io/muscu/
 
 ## Crédits
 
