@@ -1,0 +1,179 @@
+.titre-section {
+  margin: 8px 4px 0;
+  font: 700 22px/1.1 var(--police);
+  letter-spacing: -0.02em;
+}
+
+.carte--accent {
+  box-shadow: 0 0 0 2px var(--bleu);
+}
+
+.carte__texte {
+  margin: 8px 0 0;
+  font: 500 15px/1.45 var(--police);
+}
+
+/* Frise verticale */
+.frise-v {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.frise-v__ligne {
+  position: relative;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 8px;
+  border-radius: 14px;
+}
+
+.frise-v__ligne::before {
+  content: '';
+  position: absolute;
+  left: 19px;
+  top: -6px;
+  bottom: -6px;
+  width: 2px;
+  background: var(--bleu-pale);
+  z-index: 0;
+}
+
+.frise-v__ligne:first-child::before {
+  top: 50%;
+}
+
+.frise-v__ligne:last-child::before {
+  bottom: 50%;
+}
+
+.frise-v__marque {
+  position: relative;
+  z-index: 1;
+  width: 24px;
+  height: 24px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--bleu-pale);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.frise-v__ligne--faite .frise-v__marque {
+  background: var(--bleu);
+  border-color: var(--bleu);
+}
+
+.frise-v__ligne--etape .frise-v__marque {
+  border-color: var(--encre);
+}
+
+.frise-v__ligne--etape.frise-v__ligne--faite .frise-v__marque {
+  background: var(--encre);
+}
+
+.frise-v__ligne--actuelle {
+  background: var(--bleu-pale);
+}
+
+.frise-v__ligne--actuelle .frise-v__marque {
+  border: 6px solid var(--bleu);
+}
+
+.frise-v__texte {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.frise-v__titre {
+  font: 600 16px/1.2 var(--police);
+}
+
+.frise-v__ligne--a-venir .frise-v__titre {
+  color: var(--texte-3);
+}
+
+.frise-v__dates {
+  font: 500 13px/1.2 var(--police);
+  color: var(--texte-2);
+}
+
+.frise-v__etiquette {
+  font: 600 12px/1 var(--police);
+  padding: 6px 9px;
+  border-radius: 999px;
+  background: var(--fond);
+  color: var(--texte-3);
+  white-space: nowrap;
+}
+
+.frise-v__ligne--etape .frise-v__etiquette {
+  background: var(--encre);
+  color: #fff;
+}
+
+/* Conseils */
+.conseil__entete {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.conseil__icone {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  border-radius: 12px;
+  background: var(--bleu-pale);
+  color: var(--bleu);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.conseil__liste {
+  margin: 12px 0 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font: 400 15px/1.45 var(--police);
+}
+
+.conseil__liste li::marker {
+  color: var(--bleu);
+}
+
+/* Sauvegarde */
+.boutons-2 {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.message {
+  margin: 12px 0 0;
+  padding: 12px 14px;
+  border-radius: 14px;
+  font: 600 14px/1.35 var(--police);
+}
+
+.message--ok {
+  background: var(--vert-pale);
+  color: var(--vert-fonce);
+}
+
+.message--erreur {
+  background: #fde8e6;
+  color: var(--rouge);
+}

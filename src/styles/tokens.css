@@ -1,0 +1,47 @@
+/* Tokens de la direction « Widget » (handoff Claude Design). Mode clair uniquement. */
+:root {
+  color-scheme: light only;
+
+  --fond: #eef1f6;
+  --surface: #ffffff;
+  --encre: #0e1626;
+  --texte-2: #5a6377;
+  --texte-3: #3a4356;
+  --bordure: #e1e6ef;
+  --bordure-bouton: #d5dbe6;
+  --segmente: #dde2eb;
+  --pointille: #c3cbd9;
+  --icone-inactive: #8e97aa;
+  --repos: #f3f5f9;
+  --repos-cercle: #b4bccb;
+
+  --bleu: #3b5bdb;
+  --bleu-fonce: #2a44b8;
+  --bleu-pale: #e4e9fb;
+  --vert: #1f9d6a;
+  --vert-fonce: #13603f;
+  --vert-pale: #ddf3e8;
+  --ambre: #e39b2d;
+  --ambre-fonce: #8a5a12;
+  --ambre-pale: #fbefd9;
+  --rouge: #c9372c;
+
+  --police: 'Geist', -apple-system, system-ui, sans-serif;
+
+  --r-hero: 28px;
+  --r-carte: 24px;
+  --r-tuile: 18px;
+  --r-pastille: 14px;
+
+  --ombre-carte: 0 1px 2px rgba(20, 30, 60, 0.08);
+  --ombre-serie: 0 0 0 2px var(--bleu), 0 8px 20px -10px rgba(59, 91, 219, 0.5);
+  --ombre-valider: 0 4px 12px -4px rgba(59, 91, 219, 0.7);
+  --ombre-flottante: 0 8px 24px -8px rgba(20, 30, 60, 0.4);
+
+  --marge: 16px;
+  --ecart: 12px;
+  --tactile: 44px;
+
+  --haut-sur: env(safe-area-inset-top, 0px);
+  --bas-sur: env(safe-area-inset-bottom, 0px);
+}

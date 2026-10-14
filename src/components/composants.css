@@ -1,0 +1,342 @@
+/* Barre d'onglets */
+.onglets {
+  flex: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: var(--surface);
+  border-top: 1px solid var(--bordure);
+  padding: 8px 0 calc(var(--bas-sur) + 4px);
+}
+
+.onglet {
+  height: 50px;
+  border: 0;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: var(--texte-2);
+  font: 500 11px/1 var(--police);
+}
+
+.onglet svg {
+  color: var(--icone-inactive);
+}
+
+.onglet--actif {
+  color: var(--bleu);
+  font-weight: 600;
+}
+
+.onglet--actif svg {
+  color: var(--bleu);
+}
+
+/* Feuille modale (bas de l'écran) */
+.feuille__fond {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  background: rgba(14, 22, 38, 0.4);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  animation: apparition 0.15s ease-out;
+}
+
+.feuille {
+  width: 100%;
+  max-width: 520px;
+  max-height: 88vh;
+  overflow-y: auto;
+  background: var(--fond);
+  border-radius: var(--r-hero) var(--r-hero) 0 0;
+  padding: 10px var(--marge) calc(var(--bas-sur) + 16px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ecart);
+  animation: montee 0.2s ease-out;
+}
+
+.feuille__poignee {
+  align-self: center;
+  width: 40px;
+  height: 5px;
+  border-radius: 3px;
+  background: var(--pointille);
+}
+
+.feuille__entete {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 4px;
+}
+
+.feuille__titre {
+  margin: 0;
+  font: 700 24px/1.1 var(--police);
+  letter-spacing: -0.03em;
+}
+
+.bouton-rond {
+  width: var(--tactile);
+  height: var(--tactile);
+  flex: none;
+  border: 0;
+  border-radius: 50%;
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s ease;
+}
+
+.bouton-rond:active {
+  transform: scale(0.92);
+}
+
+@keyframes apparition {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes montee {
+  from {
+    transform: translateY(40px);
+  }
+}
+
+/* Stepper (pastille − valeur +) */
+.stepper {
+  height: 50px;
+  border-radius: var(--r-pastille);
+  background: var(--fond);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 0;
+}
+
+.stepper--grand {
+  height: 64px;
+  background: var(--surface);
+}
+
+.stepper__bouton {
+  width: var(--tactile);
+  height: 100%;
+  flex: none;
+  border: 0;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--encre);
+}
+
+.stepper__bouton:active {
+  color: var(--bleu);
+  transform: scale(0.92);
+}
+
+.stepper__valeur {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  text-align: center;
+  font: 700 19px/1 var(--police);
+  font-variant-numeric: tabular-nums;
+  padding: 0;
+}
+
+.stepper--grand .stepper__valeur {
+  font-size: 26px;
+}
+
+.stepper__valeur:focus {
+  outline: none;
+  color: var(--bleu);
+}
+
+/* Semaine (7 pilules) */
+.semaine {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.jour {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  border: 0;
+  background: transparent;
+  padding: 0;
+}
+
+.jour__pilule {
+  width: 100%;
+  height: 66px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  font: 600 16px/1 var(--police);
+  color: var(--encre);
+}
+
+.jour__marque {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.jour__fait {
+  width: 16px;
+  height: 16px;
+  margin-bottom: -4px;
+}
+
+.jour__libelle {
+  font: 500 11px/1 var(--police);
+  color: var(--texte-2);
+}
+
+.jour--muscu .jour__pilule {
+  background: var(--bleu-pale);
+}
+.jour--muscu .jour__marque {
+  background: var(--bleu);
+}
+.jour--tennis .jour__pilule {
+  background: var(--vert-pale);
+}
+.jour--tennis .jour__marque {
+  background: var(--vert);
+}
+.jour--padel .jour__pilule {
+  background: var(--ambre-pale);
+}
+.jour--padel .jour__marque {
+  background: var(--ambre);
+}
+.jour--repos .jour__pilule {
+  background: var(--repos);
+  color: var(--texte-2);
+}
+.jour--repos .jour__marque {
+  border: 1.5px solid var(--repos-cercle);
+}
+
+.jour--avant .jour__pilule {
+  background: var(--repos);
+  color: var(--icone-inactive);
+}
+.jour--avant .jour__marque {
+  border: 1.5px dashed var(--repos-cercle);
+}
+
+.jour--aujourdhui .jour__pilule {
+  color: #fff;
+  font-weight: 700;
+}
+.jour--aujourdhui.jour--muscu .jour__pilule {
+  background: var(--bleu);
+}
+.jour--aujourdhui.jour--tennis .jour__pilule {
+  background: var(--vert);
+}
+.jour--aujourdhui.jour--padel .jour__pilule {
+  background: var(--ambre);
+}
+.jour--aujourdhui.jour--repos .jour__pilule,
+.jour--aujourdhui.jour--avant .jour__pilule {
+  background: var(--texte-2);
+}
+.jour--aujourdhui .jour__marque {
+  background: #fff;
+  border: 0;
+}
+.jour--aujourdhui .jour__libelle {
+  font-weight: 600;
+  color: var(--bleu);
+}
+.jour--aujourdhui.jour--tennis .jour__libelle {
+  color: var(--vert-fonce);
+}
+.jour--aujourdhui.jour--padel .jour__libelle {
+  color: var(--ambre-fonce);
+}
+
+/* Anneau de cycle */
+.anneau {
+  width: 60px;
+  height: 60px;
+  flex: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.anneau__centre {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 700 15px/1 var(--police);
+}
+
+/* Frise de 12 segments */
+.frise {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 3px;
+  align-items: end;
+}
+
+.frise__segment {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--bleu-pale);
+}
+
+.frise__segment--fait {
+  background: var(--bleu);
+}
+
+.frise__segment--etape {
+  height: 12px;
+  background: var(--encre);
+}
+
+/* Mini-histogramme */
+.mini-barres {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 26px;
+}
+
+.mini-barres span {
+  width: 8px;
+  border-radius: 3px;
+  background: var(--bleu-pale);
+}
+
+.mini-barres span:last-child {
+  background: var(--bleu);
+}
