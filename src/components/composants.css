@@ -340,3 +340,93 @@
 .mini-barres span:last-child {
   background: var(--bleu);
 }
+
+/* Agenda jour par jour */
+.jours {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.jours__ligne {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 10px;
+  padding: 10px 0;
+  border-top: 1px solid var(--fond);
+}
+
+.jours__ligne:first-child {
+  border-top: 0;
+}
+
+.jours__ligne--aujourdhui .jours__date {
+  color: var(--bleu);
+}
+
+.jours__date {
+  font: 600 14px/1.35 var(--police);
+  color: var(--texte-3);
+}
+
+.jours__taches {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tache {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.tache__marque {
+  width: 10px;
+  height: 10px;
+  margin-top: 5px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--encre);
+}
+
+.tache--muscu .tache__marque {
+  background: var(--bleu);
+}
+.tache--tennis .tache__marque {
+  background: var(--vert);
+}
+.tache--padel .tache__marque {
+  background: var(--ambre);
+}
+.tache--repos .tache__marque,
+.tache--legere .tache__marque {
+  background: transparent;
+  border: 2px solid var(--repos-cercle);
+}
+.tache--pesee .tache__marque,
+.tache--photos .tache__marque {
+  border-radius: 3px;
+  background: var(--bleu-fonce);
+}
+
+.tache__titre {
+  display: block;
+  font: 600 15px/1.35 var(--police);
+}
+
+.tache--repos .tache__titre {
+  color: var(--texte-2);
+  font-weight: 500;
+}
+
+.tache__detail {
+  display: block;
+  font: 500 13px/1.35 var(--police);
+  color: var(--texte-2);
+}

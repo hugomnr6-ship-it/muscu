@@ -17,7 +17,7 @@ const ICONES: Readonly<Record<IconeConseil, LucideIcon>> = {
 
 function estInstallee(): boolean {
   const iosStandalone = (navigator as Navigator & { standalone?: boolean }).standalone === true
-  return iosStandalone || window.matchMedia('(display-mode: standalone)').matches
+  return iosStandalone || (window.matchMedia?.('(display-mode: standalone)').matches ?? false)
 }
 
 interface MonCycleProps {

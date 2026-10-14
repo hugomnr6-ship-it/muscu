@@ -282,3 +282,18 @@ a {
   background: var(--ambre-pale);
   color: var(--ambre-fonce);
 }
+
+.ligne-bouton {
+  width: 100%;
+  min-height: var(--tactile);
+  margin-top: 8px;
+  border: 0;
+  border-top: 1px solid var(--fond);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0 0;
+  color: var(--bleu);
+  font: 600 15px/1 var(--police);
+}

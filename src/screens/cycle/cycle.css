@@ -22,9 +22,17 @@
   flex-direction: column;
 }
 
+.frise-v__item {
+  position: relative;
+}
+
 .frise-v__ligne {
   position: relative;
+  width: 100%;
   min-height: 52px;
+  border: 0;
+  background: transparent;
+  text-align: left;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -32,7 +40,7 @@
   border-radius: 14px;
 }
 
-.frise-v__ligne::before {
+.frise-v__item::before {
   content: '';
   position: absolute;
   left: 19px;
@@ -43,12 +51,40 @@
   z-index: 0;
 }
 
-.frise-v__ligne:first-child::before {
-  top: 50%;
+.frise-v__item:first-child::before {
+  top: 26px;
 }
 
-.frise-v__ligne:last-child::before {
-  bottom: 50%;
+.frise-v__item:last-child::before {
+  bottom: calc(100% - 26px);
+}
+
+.frise-v__chevron {
+  flex: none;
+  color: var(--texte-2);
+  transition: transform 0.15s ease;
+}
+
+.frise-v__ligne[aria-expanded='true'] .frise-v__chevron {
+  transform: rotate(180deg);
+  color: var(--bleu);
+}
+
+.frise-v__detail {
+  position: relative;
+  z-index: 1;
+  margin: 2px 0 8px 40px;
+  padding: 0 12px;
+  border-radius: 14px;
+  background: var(--fond);
+}
+
+.frise-v__detail .jours {
+  margin: 0;
+}
+
+.frise-v__detail .jours__ligne {
+  border-top-color: var(--surface);
 }
 
 .frise-v__marque {
@@ -176,4 +212,14 @@
 .message--erreur {
   background: #fde8e6;
   color: var(--rouge);
+}
+
+.frise-v__detail .jours__ligne {
+  grid-template-columns: 88px minmax(0, 1fr);
+  gap: 8px;
+}
+
+.frise-v__detail .jours__date {
+  font-size: 13px;
+  white-space: nowrap;
 }

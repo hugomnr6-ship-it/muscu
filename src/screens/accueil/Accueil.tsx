@@ -3,6 +3,7 @@ import { useState } from 'react'
 import type { Donnees, SeanceId, SportRaquette } from '../../data/types'
 import { dateLongue } from '../../logic/format'
 import { doitRappelerPesee, estJourPhotos } from '../../logic/pesee'
+import { CarteAVenir } from './CarteAVenir'
 import { CarteCycle } from './CarteCycle'
 import { ChoixSeance } from './ChoixSeance'
 import { HeroDuJour } from './HeroDuJour'
@@ -59,6 +60,8 @@ export function Accueil(props: AccueilProps) {
         activites={donnees.activites}
         onBasculerSport={onBasculerSport}
       />
+
+      <CarteAVenir aujourdhui={aujourdhui} onOuvrirCalendrier={onOuvrirCycle} />
 
       <CarteCycle aujourdhui={aujourdhui} onOuvrir={onOuvrirCycle} />
 

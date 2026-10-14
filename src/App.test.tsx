@@ -52,6 +52,22 @@ describe('App', () => {
     expect(screen.getAllByText('30 kg × 12').length).toBeGreaterThan(0)
   })
 
+  it('annonce les prochains jours sur l’accueil', () => {
+    demarrer('2026-10-19', donneesVides())
+    const aVenir = screen.getByRole('region', { name: 'À venir' })
+    expect(aVenir.textContent).toContain('Demain')
+    expect(aVenir.textContent).toContain('Tennis')
+    expect(aVenir.textContent).toContain('Séance B')
+  })
+
+  it('déplie une semaine du calendrier pour voir chaque jour', () => {
+    demarrer('2026-10-19', donneesVides())
+    fireEvent.click(screen.getByRole('button', { name: 'Tout le calendrier' }))
+    expect(screen.getByText('Pecs, dos, jambes légères')).toBeTruthy()
+    fireEvent.click(screen.getByRole('button', { name: /Semaine 6/ }))
+    expect(screen.getByText('Point d’étape', { selector: '.tache__titre' })).toBeTruthy()
+  })
+
   it('signale une date simulée', () => {
     demarrer('2026-10-16', donneesVides())
     expect(screen.getByText(/Date simulée/)).toBeTruthy()
