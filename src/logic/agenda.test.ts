@@ -16,7 +16,12 @@ describe('tachesDuJour', () => {
 
   it('donne la séance du jour avec son contenu', () => {
     expect(tachesDuJour('2026-10-19')).toEqual([
-      { type: 'muscu', titre: 'Séance A', detail: 'Pecs, dos, jambes légères' },
+      {
+        type: 'muscu',
+        titre: 'Séance A',
+        detail: 'Pecs, dos, jambes légères',
+        seance: { seanceId: 'A', decouverte: false, allegee: false },
+      },
     ])
   })
 
@@ -38,6 +43,7 @@ describe('tachesDuJour', () => {
     const taches = tachesDuJour('2026-12-28')
     expect(taches.map((t) => t.type)).toEqual(['muscu', 'legere'])
     expect(taches[0].detail).toBe('Pecs, dos, jambes légères · une série de moins')
+    expect(taches[0].seance).toEqual({ seanceId: 'A', decouverte: false, allegee: true })
   })
 
   it('prévoit le bilan le vendredi de la semaine 12', () => {

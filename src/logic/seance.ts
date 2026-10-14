@@ -31,7 +31,7 @@ const MARGE_FIN_MS = 5 * 60_000
 
 const arrondi = (valeur: number): number => Math.round(valeur * 100) / 100
 
-function nombreDeSeries(prevues: number, options: OptionsSeance): number {
+export function nombreDeSeries(prevues: number, options: Pick<OptionsSeance, 'decouverte' | 'allegee'>): number {
   if (options.decouverte) return SERIES_DECOUVERTE
   if (options.allegee) return Math.max(SERIES_MIN, prevues - 1)
   return prevues

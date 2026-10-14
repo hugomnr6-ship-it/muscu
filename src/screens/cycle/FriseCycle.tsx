@@ -2,7 +2,7 @@ import { Check, ChevronDown } from 'lucide-react'
 import { useState } from 'react'
 import { ListeJours } from '../../components/ListeJours'
 import { CYCLE } from '../../data/cycle'
-import { joursDeLaSemaine } from '../../logic/agenda'
+import { joursDeLaSemaine, type RefSeance } from '../../logic/agenda'
 import { semaineDuCycle, semainesDuCycle, type TypeSemaine } from '../../logic/cycle'
 import { ecartJours } from '../../logic/dates'
 
@@ -34,9 +34,10 @@ interface LigneProps {
   aujourdhui: string
   ouverte: boolean
   onBasculer: () => void
+  onVoirSeance: (seance: RefSeance) => void
 }
 
-function Ligne({ semaine, aujourdhui, ouverte, onBasculer }: LigneProps) {
+function Ligne({ semaine, aujourdhui, ouverte, onBasculer, onVoirSeance }: LigneProps) {
   const jours = joursDeLaSemaine(semaine.jourRepere).filter((jour) => jour.taches.length > 0)
   const classes = `frise-v__ligne frise-v__ligne--${semaine.etat}${semaine.etape ? ' frise-v__ligne--etape' : ''}`
   return (
@@ -57,7 +58,7 @@ function Ligne({ semaine, aujourdhui, ouverte, onBasculer }: LigneProps) {
       </button>
       {ouverte && (
         <div className="frise-v__detail">
-          <ListeJours jours={jours} aujourdhui={aujourdhui} />
+          <ListeJours jours={jours} aujourdhui={aujourdhui} onVoirSeance={onVoirSeance} />
         </div>
       )}
     </li>
@@ -69,7 +70,12 @@ function etatDe(numero: number, actuelle: number): Etat {
   return numero === actuelle ? 'actuelle' : 'a-venir'
 }
 
-export function FriseCycle({ aujourdhui }: { aujourdhui: string }) {
+interface FriseCycleProps {
+  aujourdhui: string
+  onVoirSeance: (seance: RefSeance) => void
+}
+
+export function FriseCycle({ aujourdhui, onVoirSeance }: FriseCycleProps) {
   const actuelle = semaineDuCycle(aujourdhui)
   const [ouverte, setOuverte] = useState<number | null>(Math.min(actuelle, CYCLE.semaines))
   const decouverteFaite = ecartJours(CYCLE.decouverte, aujourdhui) > 0 && actuelle > 0
@@ -100,7 +106,9 @@ export function FriseCycle({ aujourdhui }: { aujourdhui: string }) {
       <h2 id="titre-frise" className="carte__titre">
         Calendrier · 12 semaines
       </h2>
-      <p className="texte-2 carte__texte">Touche une semaine pour voir ce qui est prévu chaque jour.</p>
+      <p className="texte-2 carte__texte">
+        Touche une semaine pour voir ce qui est prévu chaque jour, puis une séance pour voir ses exercices.
+      </p>
       <ol className="frise-v">
         {semaines.map((semaine) => (
           <Ligne
@@ -109,6 +117,7 @@ export function FriseCycle({ aujourdhui }: { aujourdhui: string }) {
             aujourdhui={aujourdhui}
             ouverte={ouverte === semaine.numero}
             onBasculer={() => setOuverte((o) => (o === semaine.numero ? null : semaine.numero))}
+            onVoirSeance={onVoirSeance}
           />
         ))}
       </ol>

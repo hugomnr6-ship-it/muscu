@@ -11,7 +11,7 @@ interface ChoixSeanceProps {
 export function ChoixSeance({ onChoisir, onFermer }: ChoixSeanceProps) {
   return (
     <Feuille titre="Quelle séance ?" onFermer={onFermer}>
-      <p className="texte-2 feuille__intro">Tu as raté un jour ou tu veux décaler ? Choisis la séance à faire.</p>
+      <p className="texte-2 feuille__intro">Tu as raté un jour ou tu veux décaler ? Choisis une séance pour la voir, puis commence-la.</p>
       {Object.values(SEANCES).map((seance) => (
         <button key={seance.id} type="button" className="choix-seance" onClick={() => onChoisir(seance.id)}>
           <span className="choix-seance__lettre">{seance.id}</span>

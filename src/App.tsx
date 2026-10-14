@@ -4,12 +4,14 @@ import { SEANCES } from './data/programme'
 import type { Donnees, Pesee, SeanceFaite, SeanceId, SportRaquette } from './data/types'
 import { dateSimulee, useAujourdhui } from './hooks/useAujourdhui'
 import { useDonnees } from './hooks/useDonnees'
+import type { RefSeance } from './logic/agenda'
 import { infoCycle } from './logic/cycle'
 import { dateLongue } from './logic/format'
 import { enregistrerPesee } from './logic/pesee'
 import { nouveauxRecords, premieresFois } from './logic/records'
 import { creerSeance, reducteurSeance, terminerSeance, type ActionSeance } from './logic/seance'
 import { Accueil } from './screens/accueil/Accueil'
+import { ApercuSeance } from './screens/apercu/ApercuSeance'
 import { MonCycle } from './screens/cycle/MonCycle'
 import { FinSeance } from './screens/FinSeance'
 import { PeseeFeuille } from './screens/PeseeFeuille'
@@ -36,6 +38,7 @@ export function App() {
   const [seanceOuverte, setSeanceOuverte] = useState(() => donnees.seanceEnCours?.date === aujourdhui)
   const [bilan, setBilan] = useState<Bilan | null>(null)
   const [pesee, setPesee] = useState(false)
+  const [apercu, setApercu] = useState<RefSeance | null>(null)
 
   const commencer = (seanceId: SeanceId, decouverte: boolean) => {
     maj((d) => {
@@ -143,14 +146,32 @@ export function App() {
             onPesee={() => setPesee(true)}
             onBasculerSport={basculerSport}
             onOuvrirCycle={() => setOnglet('cycle')}
+            onApercu={setApercu}
           />
         )}
         {onglet === 'progression' && (
           <Progression aujourdhui={aujourdhui} donnees={donnees} onPesee={() => setPesee(true)} />
         )}
-        {onglet === 'cycle' && <MonCycle aujourdhui={aujourdhui} donnees={donnees} onImporter={importer} />}
+        {onglet === 'cycle' && (
+          <MonCycle aujourdhui={aujourdhui} donnees={donnees} onImporter={importer} onApercu={setApercu} />
+        )}
       </main>
       <Onglets actif={onglet} onChoisir={setOnglet} />
+      {apercu && (
+        <ApercuSeance
+          choix={apercu}
+          historique={donnees.historique}
+          onFermer={() => setApercu(null)}
+          onCommencer={
+            donnees.seanceEnCours
+              ? undefined
+              : () => {
+                  setApercu(null)
+                  commencer(apercu.seanceId, apercu.decouverte)
+                }
+          }
+        />
+      )}
       {pesee && (
         <PeseeFeuille
           aujourdhui={aujourdhui}

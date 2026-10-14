@@ -1,0 +1,154 @@
+.apercu__intro {
+  padding: 0 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.apercu__sous-titre {
+  margin: -6px 0 0;
+  font: 600 17px/1.3 var(--police);
+}
+
+.apercu__meta {
+  margin: 0;
+  font: 500 14px/1.3 var(--police);
+}
+
+.apercu__note {
+  margin: 4px 0 0;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: var(--bleu-pale);
+  color: var(--bleu-fonce);
+  font: 500 14px/1.4 var(--police);
+}
+
+.apercu__liste {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.apercu-exo {
+  background: var(--surface);
+  border-radius: var(--r-tuile);
+  overflow: hidden;
+}
+
+.apercu-exo__entete {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  padding: 10px 12px 10px 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+}
+
+.apercu-exo__vignette {
+  position: relative;
+  width: 72px;
+  height: 54px;
+  flex: none;
+  border-radius: 12px;
+  overflow: hidden;
+  background: repeating-linear-gradient(135deg, #c9d2e3 0 10px, #bfc9dc 10px 20px);
+}
+
+.apercu-exo__vignette img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.apercu-exo__numero {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 700 12px/1 var(--police);
+}
+
+.apercu-exo__texte {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.apercu-exo__nom {
+  font: 600 16px/1.25 var(--police);
+}
+
+.apercu-exo__consigne {
+  font: 500 14px/1.3 var(--police);
+  color: var(--texte-3);
+}
+
+.apercu-exo__perf {
+  font: 500 13px/1.3 var(--police);
+  color: var(--bleu-fonce);
+}
+
+.apercu-exo__chevron {
+  flex: none;
+  color: var(--texte-2);
+  transition: transform 0.15s ease;
+}
+
+.apercu-exo--ouvert .apercu-exo__chevron {
+  transform: rotate(180deg);
+  color: var(--bleu);
+}
+
+.apercu-exo__detail {
+  padding: 0 12px 4px;
+}
+
+.apercu-exo__video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 12px;
+  background: #000;
+}
+
+.apercu-exo__voir {
+  width: 100%;
+  min-height: var(--tactile);
+  border: 0;
+  border-radius: 12px;
+  background: var(--bleu-pale);
+  color: var(--bleu-fonce);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font: 600 15px/1 var(--police);
+}
+
+.apercu-exo__technique {
+  padding: 12px 0;
+}
+
+.apercu__action {
+  position: sticky;
+  bottom: calc(-16px - var(--bas-sur));
+  margin: 0 calc(-1 * var(--marge)) calc(-16px - var(--bas-sur));
+  padding: 10px var(--marge) calc(var(--bas-sur) + 12px);
+  background: var(--fond);
+  border-top: 1px solid var(--bordure);
+}

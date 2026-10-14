@@ -1,15 +1,24 @@
 import { CYCLE } from '../data/cycle'
 import { SEANCES } from '../data/programme'
+import type { SeanceId } from '../data/types'
 import { infoCycle, programmeDuJour } from './cycle'
 import { ajouterJours, lundiDeLaSemaine } from './dates'
 import { estJourDePesee, estJourPhotos } from './pesee'
 
 export type TypeTache = 'muscu' | 'tennis' | 'padel' | 'repos' | 'pesee' | 'photos' | 'point' | 'bilan' | 'legere'
 
+/** Séance à prévisualiser (avec ses variantes découverte / semaine légère). */
+export interface RefSeance {
+  seanceId: SeanceId
+  decouverte: boolean
+  allegee: boolean
+}
+
 export interface Tache {
   type: TypeTache
   titre: string
   detail?: string
+  seance?: RefSeance
 }
 
 export interface JourAgenda {
@@ -28,11 +37,21 @@ function activite(iso: string): Tache | null {
       return null
     case 'muscu': {
       if (programme.decouverte) {
-        return { type: 'muscu', titre: 'Séance découverte', detail: 'Séance C en 2 séries légères' }
+        return {
+          type: 'muscu',
+          titre: 'Séance découverte',
+          detail: 'Séance C en 2 séries légères',
+          seance: { seanceId: 'C', decouverte: true, allegee: false },
+        }
       }
       const seance = SEANCES[programme.seanceId]
-      const legere = infoCycle(iso).allegee ? ' · une série de moins' : ''
-      return { type: 'muscu', titre: `Séance ${seance.id}`, detail: `${seance.titre}${legere}` }
+      const allegee = infoCycle(iso).allegee
+      return {
+        type: 'muscu',
+        titre: `Séance ${seance.id}`,
+        detail: `${seance.titre}${allegee ? ' · une série de moins' : ''}`,
+        seance: { seanceId: seance.id, decouverte: false, allegee },
+      }
     }
     case 'tennis':
       return { type: 'tennis', titre: 'Tennis' }

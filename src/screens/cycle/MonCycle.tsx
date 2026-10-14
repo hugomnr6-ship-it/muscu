@@ -1,6 +1,7 @@
 import { HeartPulse, Pizza, Shield, Sparkles, SquarePlus, Utensils, Watch, type LucideIcon } from 'lucide-react'
 import { CONSEILS, type IconeConseil } from '../../data/conseils'
 import type { Donnees } from '../../data/types'
+import type { RefSeance } from '../../logic/agenda'
 import { FriseCycle } from './FriseCycle'
 import { Sauvegarde } from './Sauvegarde'
 import './cycle.css'
@@ -24,9 +25,10 @@ interface MonCycleProps {
   aujourdhui: string
   donnees: Donnees
   onImporter: (donnees: Donnees) => void
+  onApercu: (seance: RefSeance) => void
 }
 
-export function MonCycle({ aujourdhui, donnees, onImporter }: MonCycleProps) {
+export function MonCycle({ aujourdhui, donnees, onImporter, onApercu }: MonCycleProps) {
   return (
     <>
       <h1 className="titre-ecran">Mon cycle</h1>
@@ -43,7 +45,7 @@ export function MonCycle({ aujourdhui, donnees, onImporter }: MonCycleProps) {
         </section>
       )}
 
-      <FriseCycle aujourdhui={aujourdhui} />
+      <FriseCycle aujourdhui={aujourdhui} onVoirSeance={onApercu} />
 
       <h2 className="titre-section">Conseils</h2>
       {CONSEILS.map((conseil) => {

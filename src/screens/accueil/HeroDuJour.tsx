@@ -1,6 +1,7 @@
 import { Check, Play } from 'lucide-react'
 import { SEANCES } from '../../data/programme'
 import type { Donnees, SeanceId, SportRaquette } from '../../data/types'
+import type { RefSeance } from '../../logic/agenda'
 import { infoCycle, programmeDuJour, prochaineSeanceMuscu } from '../../logic/cycle'
 import { dateLongue } from '../../logic/format'
 import { nomDuJour, pluriel } from '../../logic/libelles'
@@ -15,11 +16,21 @@ interface HeroDuJourProps {
   onAbandonner: () => void
   onChoisirSeance: () => void
   onBasculerSport: (date: string, sport: SportRaquette) => void
+  onApercu: (seance: RefSeance) => void
 }
 
 export function HeroDuJour(props: HeroDuJourProps) {
-  const { aujourdhui, donnees, onCommencer, onReprendre, onTerminerEnCours, onAbandonner, onChoisirSeance, onBasculerSport } =
-    props
+  const {
+    aujourdhui,
+    donnees,
+    onCommencer,
+    onReprendre,
+    onTerminerEnCours,
+    onAbandonner,
+    onChoisirSeance,
+    onBasculerSport,
+    onApercu,
+  } = props
   const enCours = donnees.seanceEnCours
   const programme = programmeDuJour(aujourdhui)
   const prochaine = prochaineSeanceMuscu(aujourdhui)
@@ -105,6 +116,13 @@ export function HeroDuJour(props: HeroDuJourProps) {
         <button type="button" className="hero__bouton" onClick={() => onCommencer(seance.id, programme.decouverte)}>
           <Play size={20} fill="currentColor" aria-hidden="true" />
           Commencer
+        </button>
+        <button
+          type="button"
+          className="hero__secondaire"
+          onClick={() => onApercu({ seanceId: seance.id, decouverte: programme.decouverte, allegee })}
+        >
+          Voir le détail de la séance
         </button>
       </section>
     )

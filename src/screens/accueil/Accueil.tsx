@@ -1,6 +1,8 @@
 import { Dumbbell } from 'lucide-react'
 import { useState } from 'react'
 import type { Donnees, SeanceId, SportRaquette } from '../../data/types'
+import type { RefSeance } from '../../logic/agenda'
+import { infoCycle } from '../../logic/cycle'
 import { dateLongue } from '../../logic/format'
 import { doitRappelerPesee, estJourPhotos } from '../../logic/pesee'
 import { CarteAVenir } from './CarteAVenir'
@@ -21,10 +23,11 @@ interface AccueilProps {
   onPesee: () => void
   onBasculerSport: (date: string, sport: SportRaquette) => void
   onOuvrirCycle: () => void
+  onApercu: (seance: RefSeance) => void
 }
 
 export function Accueil(props: AccueilProps) {
-  const { aujourdhui, donnees, onCommencer, onPesee, onBasculerSport, onOuvrirCycle } = props
+  const { aujourdhui, donnees, onCommencer, onPesee, onBasculerSport, onOuvrirCycle, onApercu } = props
   const [choix, setChoix] = useState(false)
 
   return (
@@ -52,6 +55,7 @@ export function Accueil(props: AccueilProps) {
         onAbandonner={props.onAbandonner}
         onChoisirSeance={() => setChoix(true)}
         onBasculerSport={onBasculerSport}
+        onApercu={onApercu}
       />
 
       <SemaineActivites
@@ -61,7 +65,7 @@ export function Accueil(props: AccueilProps) {
         onBasculerSport={onBasculerSport}
       />
 
-      <CarteAVenir aujourdhui={aujourdhui} onOuvrirCalendrier={onOuvrirCycle} />
+      <CarteAVenir aujourdhui={aujourdhui} onOuvrirCalendrier={onOuvrirCycle} onVoirSeance={onApercu} />
 
       <CarteCycle aujourdhui={aujourdhui} onOuvrir={onOuvrirCycle} />
 
@@ -70,7 +74,7 @@ export function Accueil(props: AccueilProps) {
           onFermer={() => setChoix(false)}
           onChoisir={(seanceId) => {
             setChoix(false)
-            onCommencer(seanceId, false)
+            onApercu({ seanceId, decouverte: false, allegee: infoCycle(aujourdhui).allegee })
           }}
         />
       )}

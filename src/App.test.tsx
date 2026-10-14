@@ -68,6 +68,18 @@ describe('App', () => {
     expect(screen.getByText('Point d’étape', { selector: '.tache__titre' })).toBeTruthy()
   })
 
+  it('montre un aperçu de la séance avant de la commencer', () => {
+    demarrer('2026-10-19', donneesVides())
+    fireEvent.click(screen.getByRole('button', { name: 'Voir le détail de la séance' }))
+    const apercu = screen.getByRole('dialog', { name: 'Séance A' })
+    expect(apercu.textContent).toContain('Chest press machine')
+    expect(apercu.textContent).toContain('3 × 8-12 reps · repos 2 min')
+    fireEvent.click(screen.getByRole('button', { name: /Chest press machine/ }))
+    expect(screen.getByText(/Règle le siège/)).toBeTruthy()
+    fireEvent.click(screen.getByRole('button', { name: 'Commencer cette séance' }))
+    expect(screen.getByRole('heading', { name: 'Chest press machine', level: 1 })).toBeTruthy()
+  })
+
   it('signale une date simulée', () => {
     demarrer('2026-10-16', donneesVides())
     expect(screen.getByText(/Date simulée/)).toBeTruthy()
