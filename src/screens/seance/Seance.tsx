@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { FicheMachine } from '../../components/FicheMachine'
 import { exercice as trouverExercice } from '../../data/catalogue'
 import type { SeanceEnCours, SeanceFaite } from '../../data/types'
 import { useMaintenant } from '../../hooks/useMaintenant'
@@ -80,6 +81,7 @@ export function Seance({ seance, historique, onAction, onFermer, onTerminer }: S
         <p className="seance__consigne">
           {enCours.series.length} séries × {repsFr(enCours.reps)} reps · repos {reposFr(enCours.reposSec)}
         </p>
+        <FicheMachine key={`machine-${exercice.id}`} exercice={exercice} ouverteAuDepart={derniere === null} />
         <TuilesPerf exercice={exercice} derniere={derniere} suggestion={suggestion} decouverte={seance.decouverte} />
         <Series
           exercice={exercice}

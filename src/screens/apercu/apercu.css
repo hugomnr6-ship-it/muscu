@@ -144,6 +144,18 @@
   padding: 12px 0;
 }
 
+.apercu-exo__machine {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: var(--r-pastille);
+  background: var(--repos);
+}
+
+.apercu-exo__machine-nom {
+  margin: 0 0 8px;
+  font: 500 15px/1.35 var(--police);
+}
+
 .apercu__action {
   position: sticky;
   bottom: calc(-16px - var(--bas-sur));

@@ -1,5 +1,6 @@
 import { ChevronDown, Play } from 'lucide-react'
 import { useId, useState } from 'react'
+import { InfosMachine } from '../../components/FicheMachine'
 import type { Exercice } from '../../data/types'
 import type { ExerciceApercu } from '../../logic/apercu'
 import { chargeFr, reposFr, repsFr } from '../../logic/format'
@@ -63,6 +64,14 @@ export function ApercuExercice({ numero, exercice, apercu }: ApercuExerciceProps
                 <Play size={18} fill="currentColor" aria-hidden="true" /> Voir la démo ({exercice.demo.duree} s)
               </button>
             ))}
+          {exercice.machine && (
+            <div className="apercu-exo__machine">
+              <p className="apercu-exo__machine-nom">
+                Écrit sur la machine : <strong>{exercice.machine.nom}</strong>
+              </p>
+              <InfosMachine exercice={exercice} />
+            </div>
+          )}
           <ol className="technique__liste apercu-exo__technique">
             {exercice.technique.map((point, i) => (
               <li key={i}>

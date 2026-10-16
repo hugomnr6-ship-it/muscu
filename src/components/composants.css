@@ -456,3 +456,70 @@
   margin-top: 1px;
   color: var(--bleu);
 }
+
+/* Fiche machine : nom écrit dessus, aspect et plan B (séance et aperçu) */
+.fiche-machine {
+  margin-top: 14px;
+  background: var(--surface);
+  border-radius: var(--r-tuile);
+}
+
+.fiche-machine__bouton {
+  width: 100%;
+  min-height: 56px;
+  border: 0;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 16px;
+  color: inherit;
+  text-align: left;
+}
+
+.fiche-machine__texte {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.fiche-machine__libelle {
+  font: 500 13px/1.2 var(--police);
+  color: var(--texte-2);
+}
+
+.fiche-machine__nom {
+  font: 700 17px/1.25 var(--police);
+}
+
+.fiche-machine__chevron {
+  flex: none;
+  color: var(--texte-2);
+  transition: transform 0.15s ease;
+}
+
+.fiche-machine--ouverte .fiche-machine__chevron {
+  color: var(--bleu);
+  transform: rotate(90deg);
+}
+
+.fiche-machine__contenu {
+  padding: 0 16px 14px;
+}
+
+.infos-machine {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font: 400 15px/1.4 var(--police);
+}
+
+.infos-machine p {
+  margin: 0;
+}
+
+.infos-machine__label {
+  font-weight: 600;
+}

@@ -1,10 +1,13 @@
 import type { Exercice } from './types'
 
+/** Machine occupée : valable pour tous les exercices, avant l'alternative propre à chacun (`planB`). */
+export const PLAN_B_GENERAL = 'Fais un autre exo de la liste et reviens après.'
+
 /**
- * Catalogue des exercices de la phase 1 (machines et poulies guidées, adaptées à un débutant).
- * Les vidéos sont complétées dans `medias.ts`.
+ * Catalogue des exercices de la phase 1, sur des machines « toutes faites » (siège + goupille)
+ * qu'on trouve dans les Fitness Park (Technogym, Hammer Strength). Les vidéos sont dans `medias.ts`.
  */
-const LISTE: readonly Omit<Exercice, 'video'>[] = [
+const PROGRAMME: readonly Omit<Exercice, 'video'>[] = [
   {
     id: 'chest-press',
     nom: 'Chest press machine',
@@ -12,25 +15,35 @@ const LISTE: readonly Omit<Exercice, 'video'>[] = [
     typeCharge: 'charge',
     pasKg: 2.5,
     rechercheVideo: 'chest press machine technique débutant',
+    machine: {
+      nom: 'Chest Press',
+      aspect: 'Assis, dos contre le dossier, tu pousses 2 poignées devant toi. Prends toujours la même pour comparer tes charges.',
+    },
+    planB: 'Une autre machine où c’est écrit « Chest Press ».',
     technique: [
-      'Règle le siège : les poignées arrivent au milieu de la poitrine.',
+      'Règle le siège : les poignées arrivent au milieu de la poitrine, pas au niveau du cou.',
       'Serre les omoplates, dos bien collé au dossier.',
-      'Pousse en soufflant, sans bloquer les coudes.',
+      'Pousse en soufflant, sans bloquer les coudes. Si les poignées se rapprochent ou montent un peu, c’est normal : la machine est faite comme ça.',
       'Reviens lentement, en 2 à 3 secondes.',
     ],
   },
   {
-    id: 'tirage-vertical-neutre',
-    nom: 'Tirage vertical prise neutre',
+    id: 'tirage-vertical',
+    nom: 'Tirage vertical à la poulie haute',
     court: 'Tirage',
     typeCharge: 'charge',
     pasKg: 2.5,
-    rechercheVideo: 'tirage vertical prise neutre technique',
+    rechercheVideo: 'tirage vertical prise supination technique',
+    machine: {
+      nom: 'Lat Machine (ou Lat Pulldown)',
+      aspect: 'Assis, cuisses bloquées sous 2 boudins, une barre au-dessus de la tête accrochée à un câble.',
+    },
+    planB: 'Les tractions à la machine « Assisted Chin/Dip ».',
     technique: [
-      'Prise neutre (paumes face à face), cale bien les cuisses sous les boudins.',
-      'Descends les épaules avant de tirer : poitrine sortie.',
-      'Tire la poignée jusqu’en haut de la poitrine, jamais derrière la nuque.',
-      'Remonte lentement, bras presque tendus. C’est l’exo de ta blessure : charge légère au début.',
+      'Garde la poignée déjà accrochée (barre ou triangle) : tu n’as rien à changer.',
+      'Avec la grande barre : mains à largeur d’épaules, paumes vers toi. C’est la prise la plus douce pour ton épaule droite.',
+      'Cuisses calées, épaules basses, poitrine sortie. Tire jusqu’en haut de la poitrine, jamais derrière la nuque.',
+      'Remonte lentement, bras presque tendus. Charge légère au début.',
     ],
   },
   {
@@ -39,26 +52,55 @@ const LISTE: readonly Omit<Exercice, 'video'>[] = [
     court: 'Presse',
     typeCharge: 'charge',
     pasKg: 5,
-    rechercheVideo: 'presse à cuisses 45 technique débutant',
+    rechercheVideo: 'leg press machine assise technique débutant',
+    machine: {
+      nom: 'Leg Press',
+      aspect: 'Assis le dos incliné, pieds sur une grande plaque devant toi, avec une pile de poids et une goupille.',
+    },
+    planB: 'Une autre presse : il y en a souvent plusieurs.',
     technique: [
-      'Pieds à largeur de bassin, au milieu de la plateforme.',
-      'Descends jusqu’à ce que les genoux forment un angle droit, bas du dos collé.',
-      'Pousse avec les talons, genoux dans l’axe des pieds.',
+      'Règle le dossier : en bas, tes genoux forment un angle droit.',
+      'Pieds à largeur de bassin, au milieu de la plaque.',
+      'Pousse avec les talons, genoux dans l’axe des pieds, bas du dos collé.',
       'Ne verrouille pas les genoux en haut.',
     ],
   },
   {
-    id: 'rowing-assis-machine',
-    nom: 'Rowing assis à la poulie',
+    id: 'mollets-presse',
+    nom: 'Mollets à la presse',
+    court: 'Mollets',
+    typeCharge: 'charge',
+    pasKg: 5,
+    rechercheVideo: 'mollets presse à cuisses technique',
+    machine: {
+      nom: 'Leg Press (la même que pour la presse)',
+      aspect: 'Tu ne changes pas de machine : seule la pointe des pieds est en bas de la plaque.',
+    },
+    planB: 'Une machine à mollets (« Calf » ou « Standing Calf »).',
+    technique: [
+      'Pointes de pieds en bas de la plaque, talons dans le vide.',
+      'Jambes presque tendues : seules les chevilles bougent.',
+      'Pousse avec les pointes le plus loin possible, marque 1 seconde.',
+      'Reviens lentement pour bien étirer.',
+    ],
+  },
+  {
+    id: 'rowing-machine-neutre',
+    nom: 'Rowing à la machine',
     court: 'Rowing',
     typeCharge: 'charge',
     pasKg: 2.5,
-    rechercheVideo: 'rowing assis poulie basse technique',
+    rechercheVideo: 'rowing machine prise neutre technique',
+    machine: {
+      nom: 'Low Row (ou Seated Row, Row)',
+      aspect: 'Assis, poitrine contre un coussin, tu tires 2 poignées vers toi.',
+    },
+    planB: 'Le rowing assis à la poulie basse, avec la poignée déjà accrochée.',
     technique: [
-      'Assis bien droit, légère flexion des genoux.',
-      'Tire la poignée vers le nombril en serrant les omoplates.',
-      'Garde le buste fixe : pas de balancier.',
-      'Reviens lentement en laissant les épaules s’avancer un peu.',
+      'Règle le siège : les poignées arrivent au bas de la poitrine.',
+      'Tire les coudes vers l’arrière en serrant les omoplates.',
+      'Garde la poitrine collée au coussin : pas d’élan.',
+      'Reviens lentement, bras tendus.',
     ],
   },
   {
@@ -68,11 +110,258 @@ const LISTE: readonly Omit<Exercice, 'video'>[] = [
     typeCharge: 'charge',
     pasKg: 1,
     rechercheVideo: 'élévations latérales haltères technique',
+    machine: {
+      nom: 'Haltères (sur le râtelier)',
+      aspect: '2 petits haltères, vers 4 à 6 kg pour commencer. Tu les fais debout, à côté du râtelier ou devant un miroir.',
+    },
+    planB: 'Une machine « Lateral Raise » si tu en vois une libre.',
     technique: [
-      'Debout, haltères légers, coudes très légèrement fléchis.',
+      'Debout, coudes très légèrement fléchis.',
       'Monte les bras sur les côtés jusqu’à hauteur d’épaules, pas plus.',
       'Mène le mouvement avec les coudes, sans hausser les épaules.',
       'Redescends lentement. Ici, léger et propre vaut mieux que lourd.',
+    ],
+  },
+  {
+    id: 'curl-machine',
+    nom: 'Curl biceps à la machine',
+    court: 'Curl',
+    typeCharge: 'charge',
+    pasKg: 2.5,
+    rechercheVideo: 'curl biceps machine pupitre technique',
+    machine: {
+      nom: 'Arm Curl (ou Biceps Curl)',
+      aspect: 'Assis, l’arrière des bras posé sur un pupitre incliné, tu plies les bras.',
+    },
+    planB: 'Curl aux haltères, assis sur un banc, paumes vers le haut.',
+    technique: [
+      'Règle le siège : tes coudes sont en face de l’axe qui tourne.',
+      'Arrière des bras bien à plat sur le pupitre.',
+      'Plie les bras en contractant les biceps, sans décoller les coudes.',
+      'Redescends lentement, bras presque tendus.',
+    ],
+  },
+  {
+    id: 'triceps-machine',
+    nom: 'Extension triceps à la machine',
+    court: 'Triceps',
+    typeCharge: 'charge',
+    pasKg: 2.5,
+    rechercheVideo: 'extension triceps machine technique',
+    machine: {
+      nom: 'Arm Extension (ou Triceps Extension)',
+      aspect: 'Assis, coudes posés sur un pupitre, tu tends les bras.',
+    },
+    planB: 'Une autre machine pour les triceps (« Triceps Press », « Seated Dip »).',
+    technique: [
+      'Règle le siège : tes coudes sont en face de l’axe qui tourne.',
+      'Coudes bien posés sur le pupitre : ils ne bougent pas.',
+      'Tends les bras en soufflant, sans verrouiller.',
+      'Reviens lentement.',
+    ],
+  },
+  {
+    id: 'tractions-assistees',
+    nom: 'Tractions à la machine assistée',
+    court: 'Tractions',
+    typeCharge: 'assistance',
+    pasKg: 2.5,
+    rechercheVideo: 'tractions machine assistée technique',
+    machine: {
+      nom: 'Assisted Chin/Dip (ou Chin Dip Assist)',
+      aspect: 'Une grande machine avec des marches : tu poses les genoux sur un plateau qui t’aide à monter.',
+    },
+    planB: 'Le tirage vertical à la Lat Machine.',
+    technique: [
+      'Le poids affiché est l’aide : moins d’aide = plus fort. Objectif : 0 kg.',
+      'Genoux sur le plateau, prends les poignées où tes paumes se font face si la machine en a.',
+      'Tire la poitrine vers le haut en descendant les épaules.',
+      'Redescends lentement jusqu’aux bras tendus.',
+    ],
+  },
+  {
+    id: 'shoulder-press-machine',
+    nom: 'Développé épaules à la machine',
+    court: 'Shoulder press',
+    typeCharge: 'charge',
+    pasKg: 2.5,
+    rechercheVideo: 'shoulder press machine technique débutant',
+    machine: {
+      nom: 'Shoulder Press',
+      aspect: 'Assis, dos contre le dossier, tu pousses 2 poignées au-dessus de la tête.',
+    },
+    planB: 'Une autre machine où c’est écrit « Shoulder Press ».',
+    technique: [
+      'Règle le siège : les poignées partent à hauteur des épaules.',
+      'Dos collé au dossier, abdos serrés.',
+      'Pousse vers le haut sans verrouiller les coudes.',
+      'Si l’épaule droite tire, arrête et baisse la charge.',
+    ],
+  },
+  {
+    id: 'leg-curl-assis',
+    nom: 'Leg curl assis',
+    court: 'Leg curl',
+    typeCharge: 'charge',
+    pasKg: 2.5,
+    rechercheVideo: 'leg curl assis machine technique',
+    machine: {
+      nom: 'Leg Curl (ou Seated Leg Curl)',
+      aspect: 'Assis, jambes tendues posées sur un boudin, un 2e boudin bloque tes cuisses. Tu plies les jambes vers le bas.',
+    },
+    planB: 'Le leg curl allongé sur le ventre (« Prone Leg Curl »).',
+    technique: [
+      'Genoux en face de l’axe qui tourne, boudin juste au-dessus des chevilles.',
+      'Bloque bien les cuisses sous l’appui.',
+      'Plie les jambes au maximum en contractant l’arrière des cuisses.',
+      'Reviens lentement.',
+    ],
+  },
+  {
+    id: 'pec-deck',
+    nom: 'Pec deck (butterfly)',
+    court: 'Pec deck',
+    typeCharge: 'charge',
+    pasKg: 2.5,
+    rechercheVideo: 'pec deck butterfly machine technique',
+    machine: {
+      nom: 'Pectoral (ou Pec Deck, Butterfly)',
+      aspect: 'Assis, bras ouverts sur les côtés, tu ramènes les poignées devant toi.',
+    },
+    planB: 'La Chest Press, plus légère, 12 à 15 reps.',
+    technique: [
+      'Poignées à hauteur de poitrine, coudes légèrement fléchis.',
+      'Ramène les bras devant toi comme pour faire un câlin.',
+      'Serre les pecs 1 seconde au centre.',
+      'Ouvre lentement sans aller trop loin derrière.',
+    ],
+  },
+  {
+    id: 'oiseau-machine',
+    nom: 'Oiseau à la machine',
+    court: 'Oiseau',
+    typeCharge: 'charge',
+    pasKg: 2.5,
+    rechercheVideo: 'oiseau machine pec deck inversé technique',
+    machine: {
+      nom: 'Rear Delt (souvent la même machine que le Pec Deck)',
+      aspect: 'Tu t’assois à l’envers, face au dossier, et tu ouvres les bras vers l’arrière.',
+    },
+    planB: 'Le face pull à la poulie, seulement si la corde est déjà accrochée.',
+    technique: [
+      'Poitrine contre le coussin, poignées à hauteur d’épaules.',
+      'Bras presque tendus, ouvre-les vers l’arrière en serrant les omoplates.',
+      'Ne hausse pas les épaules.',
+      'Léger et contrôlé : c’est l’exo qui protège tes épaules.',
+    ],
+  },
+  {
+    id: 'crunch-machine',
+    nom: 'Crunch à la machine',
+    court: 'Crunch',
+    typeCharge: 'charge',
+    pasKg: 2.5,
+    rechercheVideo: 'crunch machine abdominaux technique',
+    machine: {
+      nom: 'Abdominal Crunch',
+      aspect: 'Assis, tu tiens des poignées au-dessus des épaules et tu t’enroules vers l’avant.',
+    },
+    planB: 'Les relevés de jambes à la chaise romaine.',
+    technique: [
+      'Règle le siège pour que les poignées soient à hauteur d’épaules.',
+      'Enroule-toi comme pour faire une boule : rapproche les côtes du bassin, menton rentré.',
+      'Souffle tout ton air en descendant. Les bras tiennent les poignées, ils ne tirent pas.',
+      'Le mouvement est court. Tu sens le bas du dos ou tu tires avec les bras ? Baisse la charge.',
+    ],
+  },
+  {
+    id: 'leg-extension',
+    nom: 'Leg extension',
+    court: 'Leg extension',
+    typeCharge: 'charge',
+    pasKg: 2.5,
+    rechercheVideo: 'leg extension machine technique',
+    machine: {
+      nom: 'Leg Extension',
+      aspect: 'Assis, un boudin devant le bas des tibias : tu tends les jambes.',
+    },
+    planB: 'Saute-la ce jour-là, ce n’est pas grave.',
+    technique: [
+      'Genoux en face de l’axe qui tourne, boudin sur le bas des tibias.',
+      'Tends les jambes en contractant les cuisses.',
+      'Marque 1 seconde en haut.',
+      'Redescends lentement.',
+    ],
+  },
+  {
+    id: 'lombaires-machine',
+    nom: 'Lombaires à la machine',
+    court: 'Lombaires',
+    typeCharge: 'charge',
+    pasKg: 2.5,
+    rechercheVideo: 'lower back machine lombaires technique',
+    machine: {
+      nom: 'Lower Back',
+      aspect:
+        'Assis, un gros coussin dans le haut du dos : tu pousses vers l’arrière. Elle est souvent à côté de l’Abdominal Crunch, où on se penche en avant : ce n’est pas la même.',
+    },
+    planB: 'Le banc à lombaires à 45°, au poids du corps.',
+    technique: [
+      'Règle le siège : le coussin est en haut du dos, sous les omoplates.',
+      'Pieds bien posés, bassin calé contre le dossier.',
+      'Pousse vers l’arrière en déroulant le dos, sans te cambrer à fond.',
+      'Reviens lentement. Pas besoin de lourd : le bas du dos travaille, sans douleur.',
+    ],
+  },
+  {
+    id: 'releves-jambes-chaise-romaine',
+    nom: 'Relevés de jambes (chaise romaine)',
+    court: 'Relevés jambes',
+    typeCharge: 'poidsDuCorps',
+    pasKg: 2.5,
+    rechercheVideo: 'relevés de jambes chaise romaine technique',
+    machine: {
+      nom: 'Chaise romaine (ou Knee Raise)',
+      aspect: 'Une grande station avec un dossier et 2 appuis pour les avant-bras, souvent avec une barre de tractions en haut.',
+    },
+    planB: 'Le crunch à la machine (Abdominal Crunch).',
+    technique: [
+      'Avant-bras sur les appuis, dos collé au dossier.',
+      'Monte les genoux vers la poitrine en enroulant le bassin.',
+      'Pas d’élan : redescends lentement.',
+      'Trop facile ? Jambes tendues.',
+    ],
+  },
+]
+
+/** Exercices sortis du programme le 16 oct. 2026 : gardés pour lire l'historique déjà enregistré. */
+const ANCIENS: readonly Omit<Exercice, 'video'>[] = [
+  {
+    id: 'tirage-vertical-neutre',
+    nom: 'Tirage vertical prise neutre',
+    court: 'Tirage neutre',
+    typeCharge: 'charge',
+    pasKg: 2.5,
+    rechercheVideo: 'tirage vertical prise neutre technique',
+    technique: [
+      'Prise neutre (paumes face à face), cale bien les cuisses sous les boudins.',
+      'Descends les épaules avant de tirer : poitrine sortie.',
+      'Tire la poignée jusqu’en haut de la poitrine, jamais derrière la nuque.',
+      'Remonte lentement, bras presque tendus.',
+    ],
+  },
+  {
+    id: 'rowing-assis-machine',
+    nom: 'Rowing assis à la poulie',
+    court: 'Rowing poulie',
+    typeCharge: 'charge',
+    pasKg: 2.5,
+    rechercheVideo: 'rowing assis poulie basse technique',
+    technique: [
+      'Assis bien droit, légère flexion des genoux.',
+      'Tire la poignée vers le nombril en serrant les omoplates.',
+      'Garde le buste fixe : pas de balancier.',
+      'Reviens lentement en laissant les épaules s’avancer un peu.',
     ],
   },
   {
@@ -104,34 +393,6 @@ const LISTE: readonly Omit<Exercice, 'video'>[] = [
     ],
   },
   {
-    id: 'tractions-assistees',
-    nom: 'Tractions à la machine assistée',
-    court: 'Tractions',
-    typeCharge: 'assistance',
-    pasKg: 2.5,
-    rechercheVideo: 'tractions machine assistée technique',
-    technique: [
-      'Le poids affiché est l’aide : moins d’aide = plus fort. Objectif : 0 kg.',
-      'Genoux sur le plateau, prise un peu plus large que les épaules.',
-      'Tire la poitrine vers la barre en descendant les épaules.',
-      'Redescends lentement jusqu’aux bras tendus.',
-    ],
-  },
-  {
-    id: 'shoulder-press-machine',
-    nom: 'Développé épaules à la machine',
-    court: 'Shoulder press',
-    typeCharge: 'charge',
-    pasKg: 2.5,
-    rechercheVideo: 'shoulder press machine technique débutant',
-    technique: [
-      'Règle le siège : les poignées partent à hauteur des épaules.',
-      'Dos collé au dossier, abdos serrés.',
-      'Pousse vers le haut sans verrouiller les coudes.',
-      'Si l’épaule droite tire, arrête et baisse la charge.',
-    ],
-  },
-  {
     id: 'developpe-incline-smith',
     nom: 'Développé incliné à la Smith machine',
     court: 'Incliné Smith',
@@ -146,34 +407,6 @@ const LISTE: readonly Omit<Exercice, 'video'>[] = [
     ],
   },
   {
-    id: 'leg-curl-assis',
-    nom: 'Leg curl assis',
-    court: 'Leg curl assis',
-    typeCharge: 'charge',
-    pasKg: 2.5,
-    rechercheVideo: 'leg curl assis machine technique',
-    technique: [
-      'Genoux alignés avec l’axe de la machine, boudin au-dessus des chevilles.',
-      'Bloque bien les cuisses sous l’appui.',
-      'Plie les jambes au maximum en contractant l’arrière des cuisses.',
-      'Reviens lentement.',
-    ],
-  },
-  {
-    id: 'pec-deck',
-    nom: 'Pec deck (butterfly)',
-    court: 'Pec deck',
-    typeCharge: 'charge',
-    pasKg: 2.5,
-    rechercheVideo: 'pec deck butterfly machine technique',
-    technique: [
-      'Poignées à hauteur de poitrine, coudes légèrement fléchis.',
-      'Ramène les bras devant toi comme pour faire un câlin.',
-      'Serre les pecs 1 seconde au centre.',
-      'Ouvre lentement sans aller trop loin derrière.',
-    ],
-  },
-  {
     id: 'face-pull',
     nom: 'Face pull à la poulie',
     court: 'Face pull',
@@ -184,7 +417,7 @@ const LISTE: readonly Omit<Exercice, 'video'>[] = [
       'Corde à hauteur du visage, pouces vers l’arrière.',
       'Tire vers le front en écartant la corde, coudes hauts.',
       'Termine avec les mains de chaque côté de la tête.',
-      'Léger et contrôlé : c’est l’exo qui protège tes épaules.',
+      'Léger et contrôlé.',
     ],
   },
   {
@@ -202,20 +435,6 @@ const LISTE: readonly Omit<Exercice, 'video'>[] = [
     ],
   },
   {
-    id: 'crunch-machine',
-    nom: 'Crunch à la machine',
-    court: 'Crunch',
-    typeCharge: 'charge',
-    pasKg: 2.5,
-    rechercheVideo: 'crunch machine abdominaux technique',
-    technique: [
-      'Règle le siège pour que les poignées soient à hauteur d’épaules.',
-      'Enroule le buste vers le bassin en soufflant.',
-      'Ce sont les abdos qui travaillent, pas les bras.',
-      'Remonte lentement.',
-    ],
-  },
-  {
     id: 'hack-squat',
     nom: 'Hack squat machine',
     court: 'Hack squat',
@@ -226,21 +445,7 @@ const LISTE: readonly Omit<Exercice, 'video'>[] = [
       'Dos et épaules bien collés, pieds à largeur d’épaules au milieu.',
       'Descends en contrôlant jusqu’aux cuisses parallèles ou un peu plus.',
       'Remonte en poussant dans tout le pied, genoux dans l’axe.',
-      'Si la machine est prise : presse à cuisses lourde à la place.',
-    ],
-  },
-  {
-    id: 'leg-extension',
-    nom: 'Leg extension',
-    court: 'Leg extension',
-    typeCharge: 'charge',
-    pasKg: 2.5,
-    rechercheVideo: 'leg extension machine technique',
-    technique: [
-      'Genoux alignés avec l’axe de la machine, boudin sur le bas des tibias.',
-      'Tends les jambes en contractant les cuisses.',
-      'Marque 1 seconde en haut.',
-      'Redescends lentement.',
+      'Ne verrouille pas les genoux en haut.',
     ],
   },
   {
@@ -274,7 +479,7 @@ const LISTE: readonly Omit<Exercice, 'video'>[] = [
   {
     id: 'mollets-machine',
     nom: 'Mollets à la machine',
-    court: 'Mollets',
+    court: 'Mollets machine',
     typeCharge: 'charge',
     pasKg: 5,
     rechercheVideo: 'mollets machine debout technique',
@@ -283,20 +488,6 @@ const LISTE: readonly Omit<Exercice, 'video'>[] = [
       'Monte le plus haut possible sur la pointe des pieds.',
       'Marque 1 seconde en haut.',
       'Descends lentement pour bien étirer.',
-    ],
-  },
-  {
-    id: 'rowing-machine-neutre',
-    nom: 'Rowing machine prise neutre',
-    court: 'Rowing neutre',
-    typeCharge: 'charge',
-    pasKg: 2.5,
-    rechercheVideo: 'rowing machine hammer strength prise neutre technique',
-    technique: [
-      'Poitrine contre l’appui, prise neutre.',
-      'Tire les coudes vers l’arrière en serrant les omoplates.',
-      'Garde la poitrine collée : pas d’élan.',
-      'Reviens lentement, bras tendus.',
     ],
   },
   {
@@ -313,22 +504,8 @@ const LISTE: readonly Omit<Exercice, 'video'>[] = [
       'Redescends lentement. Fais les 2 bras.',
     ],
   },
-  {
-    id: 'releves-jambes-chaise-romaine',
-    nom: 'Relevés de jambes (chaise romaine)',
-    court: 'Relevés jambes',
-    typeCharge: 'poidsDuCorps',
-    pasKg: 2.5,
-    rechercheVideo: 'relevés de jambes chaise romaine technique',
-    technique: [
-      'Avant-bras sur les appuis, dos collé au dossier.',
-      'Monte les genoux vers la poitrine en enroulant le bassin.',
-      'Pas d’élan : redescends lentement.',
-      'Trop facile ? Jambes tendues.',
-    ],
-  },
 ]
 
 export const EXERCICES_BASE: ReadonlyMap<string, Omit<Exercice, 'video'>> = new Map(
-  LISTE.map((e) => [e.id, e]),
+  [...PROGRAMME, ...ANCIENS].map((e) => [e.id, e]),
 )

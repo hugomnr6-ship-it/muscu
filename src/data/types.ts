@@ -22,6 +22,12 @@ export interface DemoExercice {
   fin?: number
 }
 
+/** Pour trouver la machine à la salle : ce qui est écrit dessus et à quoi elle ressemble. */
+export interface MachineSalle {
+  nom: string
+  aspect: string
+}
+
 export interface Exercice {
   id: string
   nom: string
@@ -31,6 +37,10 @@ export interface Exercice {
   /** Incrément du stepper kg et de la suggestion de charge. */
   pasKg: number
   technique: string[]
+  /** Renseigné pour les exercices du programme ; absent des anciens, gardés pour l'historique. */
+  machine?: MachineSalle
+  /** Que faire si la machine est prise trop longtemps ou introuvable. */
+  planB?: string
   /** Tuto complet (avec explications), ouvert depuis les points de technique. */
   video?: VideoExercice
   demo?: DemoExercice

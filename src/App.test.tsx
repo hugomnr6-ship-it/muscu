@@ -76,8 +76,12 @@ describe('App', () => {
     expect(apercu.textContent).toContain('3 × 8-12 reps · repos 2 min')
     fireEvent.click(screen.getByRole('button', { name: /Chest press machine/ }))
     expect(screen.getByText(/Règle le siège/)).toBeTruthy()
+    expect(apercu.textContent).toContain('Écrit sur la machine : Chest Press')
     fireEvent.click(screen.getByRole('button', { name: 'Commencer cette séance' }))
     expect(screen.getByRole('heading', { name: 'Chest press machine', level: 1 })).toBeTruthy()
+    const fiche = screen.getByRole('button', { name: /Écrit sur la machine/ })
+    expect(fiche.getAttribute('aria-expanded')).toBe('true')
+    expect(screen.getByText(/Fais un autre exo de la liste/)).toBeTruthy()
   })
 
   it('signale une date simulée', () => {

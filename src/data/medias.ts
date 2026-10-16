@@ -18,6 +18,14 @@ export const MEDIAS: Readonly<Record<string, MediaExercice>> = {
       chaine: 'Bodykev Coaching',
     },
   },
+  'tirage-vertical': {
+    demo: { youtubeId: 'SsKApZEvh5Y', duree: 19, vertical: false },
+    video: {
+      youtubeId: 'sRWmAeNAO_I',
+      titre: 'Tirage Vertical Barre SUPINATION - Le Bon Geste',
+      chaine: 'La Boite à Outils Du Coach Sportif',
+    },
+  },
   'tirage-vertical-neutre': {
     demo: { youtubeId: '--utaPT7XYQ', duree: 13, vertical: false },
     video: {
@@ -27,11 +35,11 @@ export const MEDIAS: Readonly<Record<string, MediaExercice>> = {
     },
   },
   'presse-cuisses': {
-    demo: { youtubeId: 'yZmx_Ac3880', duree: 11, vertical: false },
+    demo: { youtubeId: '8tCEloIOx3Y', duree: 14, vertical: false },
     video: {
-      youtubeId: '-4WH5PWaJtA',
-      titre: 'PRESSE INCLINÉE À 45 DEGRÉS - TECHNIQUE',
-      chaine: 'Jon Healthyman',
+      youtubeId: 'K6wK7EXCgDU',
+      titre: 'Comment utiliser la LEG PRESS Matrix de chez Basic-Fit ?',
+      chaine: 'Bodykev Coaching',
     },
   },
   'rowing-assis-machine': {
@@ -192,6 +200,46 @@ export const MEDIAS: Readonly<Record<string, MediaExercice>> = {
       youtubeId: 'xivCwuJfQqo',
       titre: 'Relevé de jambes à la chaise romaine',
       chaine: 'ludozaa personal trainer',
+    },
+  },
+  'mollets-presse': {
+    demo: { youtubeId: 'n0MU_Mf1gQ4', duree: 10, vertical: false },
+    video: {
+      youtubeId: 'BeWXXo5jVMM',
+      titre: 'Mollet sur Machine BMD coaching',
+      chaine: 'BmD | Train With Me',
+    },
+  },
+  'curl-machine': {
+    demo: { youtubeId: 'w92qDe6LWdg', duree: 8, vertical: true },
+    video: {
+      youtubeId: 'E4EvKpLKBZ4',
+      titre: 'Comment bien utiliser la machine Curl Pupitre | Biceps massifs | Machine Basic-Fit',
+      chaine: 'Bodykev Coaching',
+    },
+  },
+  'triceps-machine': {
+    demo: { youtubeId: 'Swj_zXNO5cU', duree: 14, vertical: false, debut: 6, fin: 20 },
+    video: {
+      youtubeId: 'fuf6JZagowY',
+      titre: 'EXÉCUTION - Comment faire des extensions triceps au pupitre ?',
+      chaine: 'Thomas Pierre',
+    },
+  },
+  'oiseau-machine': {
+    demo: { youtubeId: 'bjAEwJAWxUA', duree: 17, vertical: false },
+    video: {
+      youtubeId: 'OBc2L2D9qGg',
+      titre: 'Explication du pec deck inversé - MUSCULATION',
+      chaine: 'BmD | Train With Me',
+    },
+  },
+  'lombaires-machine': {
+    demo: { youtubeId: 'qFX3CdjZVJ4', duree: 13, vertical: true },
+    video: {
+      youtubeId: 'Qb08I0dzpCo',
+      titre: 'Machine pour les lombaires chez basic fit',
+      chaine: 'Axou Fitness',
     },
   },
 }
