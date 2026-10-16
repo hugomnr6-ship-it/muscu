@@ -7,7 +7,8 @@ interface MediaExercice {
 
 /**
  * Par exercice : une démo courte (lue en boucle, sans le son) et le tuto complet en français.
- * Toutes les vidéos sont vérifiées (oEmbed 200 = intégration autorisée).
+ * Toutes les vidéos sont vérifiées (oEmbed 200 = intégration autorisée). Les démos verticales de 6 à 11 s
+ * sont filmées au Fitness Park de Claye-Souilly, sur les machines Technogym du réseau.
  */
 export const MEDIAS: Readonly<Record<string, MediaExercice>> = {
   'chest-press': {
@@ -35,7 +36,7 @@ export const MEDIAS: Readonly<Record<string, MediaExercice>> = {
     },
   },
   'presse-cuisses': {
-    demo: { youtubeId: '8tCEloIOx3Y', duree: 14, vertical: false },
+    demo: { youtubeId: 'jUx3em_ujwo', duree: 7, vertical: true },
     video: {
       youtubeId: 'K6wK7EXCgDU',
       titre: 'Comment utiliser la LEG PRESS Matrix de chez Basic-Fit ?',
@@ -75,7 +76,7 @@ export const MEDIAS: Readonly<Record<string, MediaExercice>> = {
     },
   },
   'tractions-assistees': {
-    demo: { youtubeId: '8ygapPMYK1I', duree: 11, vertical: false },
+    demo: { youtubeId: 'x6vXYc-gN2c', duree: 8, vertical: true },
     video: {
       youtubeId: 'TBWaf6AJdkg',
       titre: 'Comment utiliser le GRAVITRON pour progresser en Tractions & Dips | Machine Basic-Fit',
@@ -83,7 +84,7 @@ export const MEDIAS: Readonly<Record<string, MediaExercice>> = {
     },
   },
   'shoulder-press-machine': {
-    demo: { youtubeId: 'WvLMauqrnK8', duree: 13, vertical: false },
+    demo: { youtubeId: 'tSxnpNVBoXI', duree: 6, vertical: true },
     video: {
       youtubeId: 'qrCPnVYJEo0',
       titre: 'Comment bien utiliser la Shoulder Press Convergente | Spécial Épaules | Machine Basic-Fit',
@@ -99,7 +100,7 @@ export const MEDIAS: Readonly<Record<string, MediaExercice>> = {
     },
   },
   'leg-curl-assis': {
-    demo: { youtubeId: 'Orxowest56U', duree: 11, vertical: false },
+    demo: { youtubeId: 'v7WGxUT9rzM', duree: 7, vertical: true },
     video: {
       youtubeId: 'ku8CpHoHe6E',
       titre: 'Comment utiliser le LEG CURL ASSIS Matrix de chez Basic-Fit ?',
@@ -107,7 +108,7 @@ export const MEDIAS: Readonly<Record<string, MediaExercice>> = {
     },
   },
   'pec-deck': {
-    demo: { youtubeId: 'O-OBCfyh9Fw', duree: 12, vertical: false },
+    demo: { youtubeId: 'SLh-QqAnORQ', duree: 7, vertical: true },
     video: {
       youtubeId: 'jRQ0cKGdNMs',
       titre: 'Comment utiliser le PEC-DECK pour les PECTORAUX OU les ÉPAULES ? | Réglages + Exécution | Basic-Fit',
@@ -131,11 +132,11 @@ export const MEDIAS: Readonly<Record<string, MediaExercice>> = {
     },
   },
   'crunch-machine': {
-    demo: { youtubeId: '-OUSBPnHvsQ', duree: 9, vertical: false },
+    demo: { youtubeId: 'Y5BEno7VTXQ', duree: 6, vertical: true },
     video: {
-      youtubeId: 'F923R6AqYjo',
-      titre: 'ABDOMINAL CRUNCH : Bien utiliser la machine Basic-Fit 💪',
-      chaine: 'BmD | Train With Me',
+      youtubeId: 'Mk-BWZeMlGM',
+      titre: 'Abdominal crunch Technogym Selection',
+      chaine: 'La Salle 66',
     },
   },
   'hack-squat': {
@@ -147,7 +148,7 @@ export const MEDIAS: Readonly<Record<string, MediaExercice>> = {
     },
   },
   'leg-extension': {
-    demo: { youtubeId: 'm0FOpMEgero', duree: 11, vertical: false },
+    demo: { youtubeId: 'QjM0SdV5diw', duree: 7, vertical: true },
     video: {
       youtubeId: 'FzKZ1xe4cQw',
       titre: 'Comment utiliser le LEG EXTENSION Matrix de chez Basic-Fit',
@@ -163,6 +164,14 @@ export const MEDIAS: Readonly<Record<string, MediaExercice>> = {
     },
   },
   'extension-lombaire-45': {
+    demo: { youtubeId: '5_ejbGfdAQE', duree: 12, vertical: false },
+    video: {
+      youtubeId: 'xTKJKb71m0k',
+      titre: 'Comment Utiliser le Banc à Lombaires : Renforce Tes Lombaires & Fessiers en Même Temps !',
+      chaine: 'BmD | Train With Me',
+    },
+  },
+  'lombaires-45': {
     demo: { youtubeId: '5_ejbGfdAQE', duree: 12, vertical: false },
     video: {
       youtubeId: 'xTKJKb71m0k',
@@ -211,7 +220,7 @@ export const MEDIAS: Readonly<Record<string, MediaExercice>> = {
     },
   },
   'curl-machine': {
-    demo: { youtubeId: 'w92qDe6LWdg', duree: 8, vertical: true },
+    demo: { youtubeId: 'Tm6m5SV9HkY', duree: 8, vertical: true },
     video: {
       youtubeId: 'E4EvKpLKBZ4',
       titre: 'Comment bien utiliser la machine Curl Pupitre | Biceps massifs | Machine Basic-Fit',
@@ -219,7 +228,7 @@ export const MEDIAS: Readonly<Record<string, MediaExercice>> = {
     },
   },
   'triceps-machine': {
-    demo: { youtubeId: 'Swj_zXNO5cU', duree: 14, vertical: false, debut: 6, fin: 20 },
+    demo: { youtubeId: 'FMOo_3LkRQg', duree: 7, vertical: true },
     video: {
       youtubeId: 'fuf6JZagowY',
       titre: 'EXÉCUTION - Comment faire des extensions triceps au pupitre ?',
@@ -227,7 +236,7 @@ export const MEDIAS: Readonly<Record<string, MediaExercice>> = {
     },
   },
   'oiseau-machine': {
-    demo: { youtubeId: 'bjAEwJAWxUA', duree: 17, vertical: false },
+    demo: { youtubeId: 'jkobtDdDTKc', duree: 11, vertical: true },
     video: {
       youtubeId: 'OBc2L2D9qGg',
       titre: 'Explication du pec deck inversé - MUSCULATION',

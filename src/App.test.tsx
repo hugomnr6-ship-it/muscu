@@ -81,7 +81,17 @@ describe('App', () => {
     expect(screen.getByRole('heading', { name: 'Chest press machine', level: 1 })).toBeTruthy()
     const fiche = screen.getByRole('button', { name: /Écrit sur la machine/ })
     expect(fiche.getAttribute('aria-expanded')).toBe('true')
-    expect(screen.getByText(/Fais un autre exo de la liste/)).toBeTruthy()
+    expect(screen.getByText(/Il te reste combien de séries/)).toBeTruthy()
+  })
+
+  it('propose le plan B quand la machine des tractions assistées est introuvable', () => {
+    demarrer('2026-10-21', donneesVides())
+    fireEvent.click(screen.getByRole('button', { name: 'Voir le détail de la séance' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Commencer cette séance' }))
+    expect(screen.getByRole('heading', { name: 'Tractions à la machine assistée', level: 1 })).toBeTruthy()
+    fireEvent.click(screen.getByRole('button', { name: /Faire plutôt : Tirage/ }))
+    expect(screen.getByRole('heading', { name: 'Tirage vertical à la poulie haute', level: 1 })).toBeTruthy()
+    expect(screen.getByRole('button', { name: /Faire plutôt : Tractions/ })).toBeTruthy()
   })
 
   it('signale une date simulée', () => {

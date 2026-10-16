@@ -1,5 +1,5 @@
 import { EXERCICES_BASE } from '../data/exercices'
-import type { ExerciceEnCours, Seance, SeanceEnCours, SeanceFaite, SerieEnCours, SerieFaite, TypeCharge } from '../data/types'
+import type { ExerciceEnCours, ExerciceSeance, Seance, SeanceEnCours, SeanceFaite, SerieEnCours, SerieFaite, TypeCharge } from '../data/types'
 import { ajouterTemps } from './minuteur'
 import { derniereFois, suggererCharge, type Suggestion } from './suggestion'
 
@@ -21,6 +21,7 @@ export type ActionSeance =
   | { type: 'suivant' }
   | { type: 'allerA'; index: number }
   | { type: 'rouvrir'; serie: number }
+  | { type: 'remplacer'; exercice: ExerciceEnCours }
 
 const SERIES_DECOUVERTE = 2
 const SERIES_MIN = 2
@@ -57,20 +58,42 @@ function repsDeDepart(
   return (derniere[index] ?? derniere[derniere.length - 1]).reps
 }
 
+/** Un exercice prêt à faire : charge et reps pré-remplies d'après la dernière fois. */
+export function preparerExercice(
+  prevu: ExerciceSeance,
+  nombre: number,
+  historique: readonly SeanceFaite[],
+): ExerciceEnCours {
+  const base = EXERCICES_BASE.get(prevu.exerciceId)
+  const type = base?.typeCharge ?? 'charge'
+  const derniere = derniereFois(historique, prevu.exerciceId)?.series ?? null
+  const suggestion = suggererCharge(derniere, prevu.reps, type, base?.pasKg ?? 2.5)
+  const kg = chargeDeDepart(suggestion, type)
+  const series: SerieEnCours[] = Array.from({ length: nombre }, (_, i) => ({
+    kg,
+    reps: repsDeDepart(i, prevu.reps, suggestion, derniere),
+    faite: false,
+  }))
+  return { exerciceId: prevu.exerciceId, reps: prevu.reps, reposSec: prevu.reposSec, series }
+}
+
+/**
+ * L'exercice du plan B, à la place de l'exercice en cours : mêmes séries, reps et repos,
+ * mais la charge de départ vient de son propre historique.
+ */
+export function exerciceRemplacant(
+  enCours: ExerciceEnCours,
+  remplacantId: string,
+  historique: readonly SeanceFaite[],
+): ExerciceEnCours {
+  const prevu = { exerciceId: remplacantId, series: enCours.series.length, reps: enCours.reps, reposSec: enCours.reposSec }
+  return preparerExercice(prevu, enCours.series.length, historique)
+}
+
 export function creerSeance(seance: Seance, historique: readonly SeanceFaite[], options: OptionsSeance): SeanceEnCours {
-  const exercices: ExerciceEnCours[] = seance.exercices.map((prevu) => {
-    const base = EXERCICES_BASE.get(prevu.exerciceId)
-    const type = base?.typeCharge ?? 'charge'
-    const derniere = derniereFois(historique, prevu.exerciceId)?.series ?? null
-    const suggestion = suggererCharge(derniere, prevu.reps, type, base?.pasKg ?? 2.5)
-    const kg = chargeDeDepart(suggestion, type)
-    const series: SerieEnCours[] = Array.from({ length: nombreDeSeries(prevu.series, options) }, (_, i) => ({
-      kg,
-      reps: repsDeDepart(i, prevu.reps, suggestion, derniere),
-      faite: false,
-    }))
-    return { exerciceId: prevu.exerciceId, reps: prevu.reps, reposSec: prevu.reposSec, series }
-  })
+  const exercices = seance.exercices.map((prevu) =>
+    preparerExercice(prevu, nombreDeSeries(prevu.series, options), historique),
+  )
   return {
     id: `${options.date}-${seance.id}-${options.now}`,
     seanceId: seance.id,
@@ -144,6 +167,13 @@ function rouvrir(seance: SeanceEnCours, index: number): SeanceEnCours {
   }))
 }
 
+/** On ne change d'exercice qu'avant sa première série : les séries faites restent à leur exercice. */
+function remplacer(seance: SeanceEnCours, exercice: ExerciceEnCours): SeanceEnCours {
+  const enCours = seance.exercices[seance.index]
+  if (enCours.series.some((serie) => serie.faite)) return seance
+  return majExercice(seance, () => exercice)
+}
+
 function allerA(seance: SeanceEnCours, index: number): SeanceEnCours {
   const borne = Math.min(Math.max(0, index), seance.exercices.length - 1)
   return borne === seance.index ? seance : { ...seance, index: borne }
@@ -171,6 +201,8 @@ export function reducteurSeance(seance: SeanceEnCours, action: ActionSeance): Se
       return allerA(seance, action.index)
     case 'rouvrir':
       return rouvrir(seance, action.serie)
+    case 'remplacer':
+      return remplacer(seance, action.exercice)
   }
 }
 

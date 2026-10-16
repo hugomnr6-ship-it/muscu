@@ -1,4 +1,4 @@
-import { ChevronRight } from 'lucide-react'
+import { ArrowLeftRight, ChevronRight } from 'lucide-react'
 import { useId, useState } from 'react'
 import { PLAN_B_GENERAL } from '../data/exercices'
 import type { Exercice } from '../data/types'
@@ -28,10 +28,13 @@ interface FicheMachineProps {
   exercice: Exercice
   /** Ouverte la première fois, quand la machine n'est pas encore connue. */
   ouverteAuDepart: boolean
+  /** Exercice du plan B, proposé tant qu'aucune série n'est faite. */
+  remplacant?: Exercice | null
+  onRemplacer?: () => void
 }
 
 /** Pendant la séance : le nom écrit sur la machine, dépliable pour savoir la reconnaître. */
-export function FicheMachine({ exercice, ouverteAuDepart }: FicheMachineProps) {
+export function FicheMachine({ exercice, ouverteAuDepart, remplacant, onRemplacer }: FicheMachineProps) {
   const [ouverte, setOuverte] = useState(ouverteAuDepart)
   const idContenu = useId()
   if (!exercice.machine) return null
@@ -54,6 +57,12 @@ export function FicheMachine({ exercice, ouverteAuDepart }: FicheMachineProps) {
       {ouverte && (
         <div id={idContenu} className="fiche-machine__contenu">
           <InfosMachine exercice={exercice} />
+          {remplacant && onRemplacer && (
+            <button type="button" className="fiche-machine__remplacer" onClick={onRemplacer}>
+              <ArrowLeftRight size={18} aria-hidden="true" />
+              Faire plutôt : {remplacant.court}
+            </button>
+          )}
         </div>
       )}
     </div>

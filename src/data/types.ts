@@ -41,6 +41,8 @@ export interface Exercice {
   machine?: MachineSalle
   /** Que faire si la machine est prise trop longtemps ou introuvable. */
   planB?: string
+  /** Exercice du programme à faire à la place quand le plan B en est un : la séance peut basculer dessus. */
+  remplacant?: string
   /** Tuto complet (avec explications), ouvert depuis les points de technique. */
   video?: VideoExercice
   demo?: DemoExercice

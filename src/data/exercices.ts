@@ -1,7 +1,7 @@
 import type { Exercice } from './types'
 
 /** Machine occupée : valable pour tous les exercices, avant l'alternative propre à chacun (`planB`). */
-export const PLAN_B_GENERAL = 'Fais un autre exo de la liste et reviens après.'
+export const PLAN_B_GENERAL = 'Demande « Il te reste combien de séries ? », ou fais un autre exo de la liste et reviens après.'
 
 /**
  * Catalogue des exercices de la phase 1, sur des machines « toutes faites » (siège + goupille)
@@ -39,6 +39,7 @@ const PROGRAMME: readonly Omit<Exercice, 'video'>[] = [
       aspect: 'Assis, cuisses bloquées sous 2 boudins, une barre au-dessus de la tête accrochée à un câble.',
     },
     planB: 'Les tractions à la machine « Assisted Chin/Dip ».',
+    remplacant: 'tractions-assistees',
     technique: [
       'Garde la poignée déjà accrochée (barre ou triangle) : tu n’as rien à changer.',
       'Avec la grande barre : mains à largeur d’épaules, paumes vers toi. C’est la prise la plus douce pour ton épaule droite.',
@@ -85,22 +86,23 @@ const PROGRAMME: readonly Omit<Exercice, 'video'>[] = [
     ],
   },
   {
-    id: 'rowing-machine-neutre',
-    nom: 'Rowing à la machine',
+    id: 'rowing-assis-machine',
+    nom: 'Rowing assis à la poulie',
     court: 'Rowing',
     typeCharge: 'charge',
     pasKg: 2.5,
-    rechercheVideo: 'rowing machine prise neutre technique',
+    rechercheVideo: 'tirage horizontal poulie basse technique',
     machine: {
-      nom: 'Low Row (ou Seated Row, Row)',
-      aspect: 'Assis, poitrine contre un coussin, tu tires 2 poignées vers toi.',
+      nom: 'Seated Row ou Low Row (celle avec un câble)',
+      aspect:
+        'Un banc bas, les pieds calés contre une plateforme, et un câble devant toi avec une poignée à hauteur du ventre. On l’appelle aussi « tirage horizontal ».',
     },
-    planB: 'Le rowing assis à la poulie basse, avec la poignée déjà accrochée.',
+    planB: 'Le rowing à un bras avec un haltère, un genou et une main posés sur un banc.',
     technique: [
-      'Règle le siège : les poignées arrivent au bas de la poitrine.',
-      'Tire les coudes vers l’arrière en serrant les omoplates.',
-      'Garde la poitrine collée au coussin : pas d’élan.',
-      'Reviens lentement, bras tendus.',
+      'Garde la poignée déjà accrochée (souvent un triangle) : tu n’as rien à changer.',
+      'Pieds contre la plateforme, genoux un peu pliés, dos droit, poitrine sortie.',
+      'Tire la poignée vers le nombril en serrant les omoplates, coudes près du corps. Le buste ne bouge pas : pas de balancier.',
+      'Reviens lentement, bras tendus. Tu dois sentir le milieu du dos, pas les bras ni le bas du dos.',
     ],
   },
   {
@@ -114,7 +116,7 @@ const PROGRAMME: readonly Omit<Exercice, 'video'>[] = [
       nom: 'Haltères (sur le râtelier)',
       aspect: '2 petits haltères, vers 4 à 6 kg pour commencer. Tu les fais debout, à côté du râtelier ou devant un miroir.',
     },
-    planB: 'Une machine « Lateral Raise » si tu en vois une libre.',
+    planB: 'Une machine « Delt » ou « Lateral Raise » si tu en vois une libre.',
     technique: [
       'Debout, coudes très légèrement fléchis.',
       'Monte les bras sur les côtés jusqu’à hauteur d’épaules, pas plus.',
@@ -171,7 +173,8 @@ const PROGRAMME: readonly Omit<Exercice, 'video'>[] = [
       nom: 'Assisted Chin/Dip (ou Chin Dip Assist)',
       aspect: 'Une grande machine avec des marches : tu poses les genoux sur un plateau qui t’aide à monter.',
     },
-    planB: 'Le tirage vertical à la Lat Machine.',
+    planB: 'Le tirage vertical à la Lat Machine (pas de tractions sans aide : trop dur pour l’instant et risqué pour l’épaule).',
+    remplacant: 'tirage-vertical',
     technique: [
       'Le poids affiché est l’aide : moins d’aide = plus fort. Objectif : 0 kg.',
       'Genoux sur le plateau, prends les poignées où tes paumes se font face si la machine en a.',
@@ -229,6 +232,7 @@ const PROGRAMME: readonly Omit<Exercice, 'video'>[] = [
       aspect: 'Assis, bras ouverts sur les côtés, tu ramènes les poignées devant toi.',
     },
     planB: 'La Chest Press, plus légère, 12 à 15 reps.',
+    remplacant: 'chest-press',
     technique: [
       'Poignées à hauteur de poitrine, coudes légèrement fléchis.',
       'Ramène les bras devant toi comme pour faire un câlin.',
@@ -244,7 +248,7 @@ const PROGRAMME: readonly Omit<Exercice, 'video'>[] = [
     pasKg: 2.5,
     rechercheVideo: 'oiseau machine pec deck inversé technique',
     machine: {
-      nom: 'Rear Delt (souvent la même machine que le Pec Deck)',
+      nom: 'Reverse Fly ou Rear Delt (parfois la même machine que le Pec Deck)',
       aspect: 'Tu t’assois à l’envers, face au dossier, et tu ouvres les bras vers l’arrière.',
     },
     planB: 'Le face pull à la poulie, seulement si la corde est déjà accrochée.',
@@ -263,15 +267,17 @@ const PROGRAMME: readonly Omit<Exercice, 'video'>[] = [
     pasKg: 2.5,
     rechercheVideo: 'crunch machine abdominaux technique',
     machine: {
-      nom: 'Abdominal Crunch',
-      aspect: 'Assis, tu tiens des poignées au-dessus des épaules et tu t’enroules vers l’avant.',
+      nom: 'Abdominal Crunch (ou Total Abdominal)',
+      aspect: 'Assis, dos contre le dossier, tu tiens des poignées ou des sangles au niveau des épaules et tu t’enroules vers l’avant. Selon la marque, elle ne ressemble pas exactement à celle des vidéos : c’est le même mouvement.',
     },
     planB: 'Les relevés de jambes à la chaise romaine.',
+    remplacant: 'releves-jambes-chaise-romaine',
     technique: [
       'Règle le siège pour que les poignées soient à hauteur d’épaules.',
       'Enroule-toi comme pour faire une boule : rapproche les côtes du bassin, menton rentré.',
       'Souffle tout ton air en descendant. Les bras tiennent les poignées, ils ne tirent pas.',
       'Le mouvement est court. Tu sens le bas du dos ou tu tires avec les bras ? Baisse la charge.',
+      'Pas de courbatures aux abdos le lendemain ? C’est normal, ça ne veut pas dire que l’exo n’a pas marché.',
     ],
   },
   {
@@ -294,23 +300,22 @@ const PROGRAMME: readonly Omit<Exercice, 'video'>[] = [
     ],
   },
   {
-    id: 'lombaires-machine',
-    nom: 'Lombaires à la machine',
+    id: 'lombaires-45',
+    nom: 'Lombaires au banc à 45°',
     court: 'Lombaires',
-    typeCharge: 'charge',
+    typeCharge: 'poidsDuCorps',
     pasKg: 2.5,
-    rechercheVideo: 'lower back machine lombaires technique',
+    rechercheVideo: 'extension lombaire banc 45 degrés technique',
     machine: {
-      nom: 'Lower Back',
-      aspect:
-        'Assis, un gros coussin dans le haut du dos : tu pousses vers l’arrière. Elle est souvent à côté de l’Abdominal Crunch, où on se penche en avant : ce n’est pas la même.',
+      nom: 'Banc à lombaires (Back Extension, 45°)',
+      aspect: 'Un banc incliné : tes chevilles sont bloquées sous des boudins, tes hanches sur un coussin, et ton buste dépasse dans le vide.',
     },
-    planB: 'Le banc à lombaires à 45°, au poids du corps.',
+    planB: 'Saute-les ce jour-là, ce n’est pas grave.',
     technique: [
-      'Règle le siège : le coussin est en haut du dos, sous les omoplates.',
-      'Pieds bien posés, bassin calé contre le dossier.',
-      'Pousse vers l’arrière en déroulant le dos, sans te cambrer à fond.',
-      'Reviens lentement. Pas besoin de lourd : le bas du dos travaille, sans douleur.',
+      'Règle le coussin juste sous les hanches : tu dois pouvoir plier au niveau du bassin.',
+      'Bras croisés sur la poitrine, dos droit.',
+      'Descends lentement en pliant aux hanches, puis remonte jusqu’à être aligné, sans te cambrer.',
+      'Au poids du corps, c’est sans danger. Trop facile ? Va plus lentement avant de penser à ajouter un poids.',
     ],
   },
   {
@@ -325,6 +330,7 @@ const PROGRAMME: readonly Omit<Exercice, 'video'>[] = [
       aspect: 'Une grande station avec un dossier et 2 appuis pour les avant-bras, souvent avec une barre de tractions en haut.',
     },
     planB: 'Le crunch à la machine (Abdominal Crunch).',
+    remplacant: 'crunch-machine',
     technique: [
       'Avant-bras sur les appuis, dos collé au dossier.',
       'Monte les genoux vers la poitrine en enroulant le bassin.',
@@ -348,20 +354,6 @@ const ANCIENS: readonly Omit<Exercice, 'video'>[] = [
       'Descends les épaules avant de tirer : poitrine sortie.',
       'Tire la poignée jusqu’en haut de la poitrine, jamais derrière la nuque.',
       'Remonte lentement, bras presque tendus.',
-    ],
-  },
-  {
-    id: 'rowing-assis-machine',
-    nom: 'Rowing assis à la poulie',
-    court: 'Rowing poulie',
-    typeCharge: 'charge',
-    pasKg: 2.5,
-    rechercheVideo: 'rowing assis poulie basse technique',
-    technique: [
-      'Assis bien droit, légère flexion des genoux.',
-      'Tire la poignée vers le nombril en serrant les omoplates.',
-      'Garde le buste fixe : pas de balancier.',
-      'Reviens lentement en laissant les épaules s’avancer un peu.',
     ],
   },
   {
@@ -502,6 +494,45 @@ const ANCIENS: readonly Omit<Exercice, 'video'>[] = [
       'Monte le bras sur le côté jusqu’à hauteur d’épaule.',
       'Épaule basse, pas de haussement.',
       'Redescends lentement. Fais les 2 bras.',
+    ],
+  },
+  {
+    id: 'rowing-machine-neutre',
+    nom: 'Rowing à la machine',
+    court: 'Rowing',
+    typeCharge: 'charge',
+    pasKg: 2.5,
+    rechercheVideo: 'rowing machine prise neutre technique',
+    machine: {
+      nom: 'Low Row (ou Seated Row, Row)',
+      aspect: 'Assis, poitrine contre un coussin, tu tires 2 poignées vers toi.',
+    },
+    planB: 'Le rowing assis à la poulie basse, avec la poignée déjà accrochée.',
+    technique: [
+      'Règle le siège : les poignées arrivent au bas de la poitrine.',
+      'Tire les coudes vers l’arrière en serrant les omoplates.',
+      'Garde la poitrine collée au coussin : pas d’élan.',
+      'Reviens lentement, bras tendus.',
+    ],
+  },
+  {
+    id: 'lombaires-machine',
+    nom: 'Lombaires à la machine',
+    court: 'Lombaires',
+    typeCharge: 'charge',
+    pasKg: 2.5,
+    rechercheVideo: 'lower back machine lombaires technique',
+    machine: {
+      nom: 'Lower Back',
+      aspect:
+        'Assis, un gros coussin dans le haut du dos : tu pousses vers l’arrière. Elle est souvent à côté de l’Abdominal Crunch, où on se penche en avant : ce n’est pas la même.',
+    },
+    planB: 'Le banc à lombaires à 45°, au poids du corps.',
+    technique: [
+      'Règle le siège : le coussin est en haut du dos, sous les omoplates.',
+      'Pieds bien posés, bassin calé contre le dossier.',
+      'Pousse vers l’arrière en déroulant le dos, sans te cambrer à fond.',
+      'Reviens lentement. Pas besoin de lourd : le bas du dos travaille, sans douleur.',
     ],
   },
 ]

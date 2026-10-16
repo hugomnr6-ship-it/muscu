@@ -24,6 +24,27 @@
   font: 500 14px/1.4 var(--police);
 }
 
+.apercu__reflexes {
+  margin-top: 10px;
+  padding: 12px 14px;
+  border-radius: var(--r-pastille);
+  background: var(--surface);
+  font: 400 14px/1.4 var(--police);
+}
+
+.apercu__reflexes-titre {
+  margin: 0 0 6px;
+  font-weight: 600;
+}
+
+.apercu__reflexes ul {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
 .apercu__liste {
   margin: 0;
   padding: 0;

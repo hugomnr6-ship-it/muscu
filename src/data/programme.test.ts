@@ -20,6 +20,13 @@ describe('programme', () => {
     }
   })
 
+  it('propose comme remplaçant un exercice du programme qui dit où le trouver', () => {
+    for (const id of idsDuProgramme) {
+      const remplacant = EXERCICES.get(id)?.remplacant
+      if (remplacant) expect(EXERCICES.get(remplacant)?.machine, `${id} → ${remplacant}`).toBeDefined()
+    }
+  })
+
   it('montre une démo courte pour chaque exercice', () => {
     for (const id of idsDuProgramme) {
       expect(EXERCICES.get(id)?.demo, id).toBeDefined()
@@ -27,7 +34,7 @@ describe('programme', () => {
   })
 
   it('garde les exercices déjà enregistrés pour relire l’historique', () => {
-    for (const ancien of ['hack-squat', 'extension-lombaire-45', 'mollets-machine', 'elevations-laterales-poulie', 'leg-curl-allonge']) {
+    for (const ancien of ['hack-squat', 'extension-lombaire-45', 'mollets-machine', 'elevations-laterales-poulie', 'leg-curl-allonge', 'rowing-machine-neutre', 'lombaires-machine']) {
       expect(EXERCICES.has(ancien), ancien).toBe(true)
     }
   })

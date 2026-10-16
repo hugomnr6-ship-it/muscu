@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { SEANCES } from '../data/programme'
 import type { SeanceEnCours } from '../data/types'
 import { s, seanceFaite } from './fixtures'
-import { creerSeance, reducteurSeance, serieCourante, terminerSeance, toutesFaites } from './seance'
+import { creerSeance, exerciceRemplacant, reducteurSeance, serieCourante, terminerSeance, toutesFaites } from './seance'
 
 const NOW = 1_800_000_000_000
 
@@ -140,6 +140,33 @@ describe('reducteurSeance', () => {
     reducteurSeance(seance, { type: 'valider', now: NOW })
     reducteurSeance(seance, { type: 'ajuster', champ: 'kg', delta: 5 })
     expect(seance).toEqual(copie)
+  })
+})
+
+describe('remplacement par le plan B', () => {
+  const seanceB = (historique = [seanceFaite('2026-10-19', {})]) =>
+    creerSeance(SEANCES.B, historique, { date: '2026-10-21', now: NOW, decouverte: false, allegee: false })
+
+  it('fait le tirage vertical à la place des tractions, avec la charge de son historique', () => {
+    const historique = [seanceFaite('2026-10-19', { 'tirage-vertical': [s(35, 12), s(35, 12), s(35, 12)] })]
+    const seance = seanceB(historique)
+    const tirage = exerciceRemplacant(seance.exercices[0], 'tirage-vertical', historique)
+    const apres = reducteurSeance(seance, { type: 'remplacer', exercice: tirage })
+    expect(apres.exercices[0].exerciceId).toBe('tirage-vertical')
+    expect(apres.exercices[0].series.map((x) => x.kg)).toEqual([37.5, 37.5, 37.5])
+    expect(apres.exercices[0].reps).toEqual(seance.exercices[0].reps)
+    expect(apres.exercices.slice(1)).toEqual(seance.exercices.slice(1))
+  })
+
+  it('garde le nombre de séries prévu (séance allégée comprise)', () => {
+    const allegee = creerSeance(SEANCES.B, [], { date: '2026-12-28', now: NOW, decouverte: false, allegee: true })
+    expect(exerciceRemplacant(allegee.exercices[0], 'tirage-vertical', []).series).toHaveLength(2)
+  })
+
+  it("ne remplace plus l'exercice une fois une série validée", () => {
+    const seance = reducteurSeance(seanceB(), { type: 'valider', now: NOW })
+    const apres = reducteurSeance(seance, { type: 'remplacer', exercice: exerciceRemplacant(seance.exercices[0], 'tirage-vertical', []) })
+    expect(apres).toBe(seance)
   })
 })
 

@@ -7,7 +7,7 @@ import { debloquerSon, signalFinRepos } from '../../lib/signal'
 import { reposFr, repsFr } from '../../logic/format'
 import { restant } from '../../logic/minuteur'
 import type { ActionSeance, ChampSerie } from '../../logic/seance'
-import { toutesFaites } from '../../logic/seance'
+import { exerciceRemplacant, toutesFaites } from '../../logic/seance'
 import { derniereFois, suggererCharge } from '../../logic/suggestion'
 import { BarreAction } from './BarreAction'
 import { ListeExercices } from './ListeExercices'
@@ -42,6 +42,8 @@ export function Seance({ seance, historique, onAction, onFermer, onTerminer }: S
   const suggestion = suggererCharge(derniere?.series ?? null, enCours.reps, exercice.typeCharge, exercice.pasKg)
   const dernierExercice = seance.index === seance.exercices.length - 1
   const fini = toutesFaites(enCours)
+  const commence = enCours.series.some((serie) => serie.faite)
+  const remplacant = exercice.remplacant && !commence ? trouverExercice(exercice.remplacant) : null
 
   // Fin du repos : bip + vibration une seule fois, puis la barre disparaît.
   useEffect(() => {
@@ -81,7 +83,16 @@ export function Seance({ seance, historique, onAction, onFermer, onTerminer }: S
         <p className="seance__consigne">
           {enCours.series.length} séries × {repsFr(enCours.reps)} reps · repos {reposFr(enCours.reposSec)}
         </p>
-        <FicheMachine key={`machine-${exercice.id}`} exercice={exercice} ouverteAuDepart={derniere === null} />
+        <FicheMachine
+          key={`machine-${exercice.id}`}
+          exercice={exercice}
+          ouverteAuDepart={derniere === null}
+          remplacant={remplacant}
+          onRemplacer={() =>
+            remplacant &&
+            onAction({ type: 'remplacer', exercice: exerciceRemplacant(enCours, remplacant.id, historique) })
+          }
+        />
         <TuilesPerf exercice={exercice} derniere={derniere} suggestion={suggestion} decouverte={seance.decouverte} />
         <Series
           exercice={exercice}
@@ -90,7 +101,7 @@ export function Seance({ seance, historique, onAction, onFermer, onTerminer }: S
           onValider={valider}
           onRouvrir={(serie) => onAction({ type: 'rouvrir', serie })}
         />
-        <Technique key={exercice.id} exercice={exercice} />
+        <Technique key={exercice.id} exercice={exercice} ouverteAuDepart={derniere === null} />
       </div>
       <BarreAction
         reposRestant={reposRestant}

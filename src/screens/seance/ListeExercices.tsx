@@ -14,7 +14,7 @@ interface ListeExercicesProps {
 export function ListeExercices({ seance, onAller, onTerminer, onFermer }: ListeExercicesProps) {
   return (
     <Feuille titre="Exercices de la séance" onFermer={onFermer}>
-      <p className="texte-2 feuille__intro">Machine prise ? Passe à un autre exercice et reviens plus tard.</p>
+      <p className="texte-2 feuille__intro">Machine prise ? Passe à un autre exercice et reviens plus tard. L’ordre n’est pas grave : garde juste les bras et les abdos pour la fin.</p>
       {seance.exercices.map((enCours, i) => {
         const fait = toutesFaites(enCours)
         const faites = enCours.series.filter((s) => s.faite).length

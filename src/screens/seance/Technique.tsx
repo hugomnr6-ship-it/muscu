@@ -4,10 +4,12 @@ import type { Exercice } from '../../data/types'
 
 interface TechniqueProps {
   exercice: Exercice
+  /** Dépliée la première fois, pour lire les réglages avant de commencer. */
+  ouverteAuDepart: boolean
 }
 
-export function Technique({ exercice }: TechniqueProps) {
-  const [ouverte, setOuverte] = useState(false)
+export function Technique({ exercice, ouverteAuDepart }: TechniqueProps) {
+  const [ouverte, setOuverte] = useState(ouverteAuDepart)
   const idContenu = useId()
   const lienYoutube = exercice.video
     ? `https://www.youtube.com/watch?v=${exercice.video.youtubeId}`

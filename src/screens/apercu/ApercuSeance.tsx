@@ -9,6 +9,14 @@ import { pluriel } from '../../logic/libelles'
 import { ApercuExercice } from './ApercuExercice'
 import './apercu.css'
 
+const BONS_REFLEXES = [
+  'Machine prise ? Demande « Il te reste combien de séries ? », ou fais un autre exo et reviens. Tout le monde fait ça.',
+  'Tu ne trouves pas une machine ? Cherche le nom écrit dessus (il est dans chaque exo) ou demande à un coach de la salle : c’est son travail.',
+  'Sur les machines, un autocollant montre le mouvement et les réglages.',
+  'L’ordre des exos n’est pas grave : garde juste les bras et les abdos pour la fin.',
+  'Moins de monde, moins de stress : en général, évite 17h30-20h30.',
+]
+
 interface ApercuSeanceProps {
   choix: RefSeance
   historique: readonly SeanceFaite[]
@@ -36,6 +44,14 @@ export function ApercuSeance({ choix, historique, onCommencer, onFermer }: Aperc
           Touche un exercice pour voir sa démo et la technique. D’une séance à l’autre, les séries et les reps
           restent les mêmes : c’est la charge qui monte.
         </p>
+        <div className="apercu__reflexes">
+          <p className="apercu__reflexes-titre">Les bons réflexes à la salle</p>
+          <ul>
+            {BONS_REFLEXES.map((conseil) => (
+              <li key={conseil}>{conseil}</li>
+            ))}
+          </ul>
+        </div>
       </div>
       <ol className="apercu__liste">
         {exercices.map((apercu, i) => {
