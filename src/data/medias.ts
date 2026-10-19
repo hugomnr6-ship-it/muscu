@@ -220,11 +220,19 @@ export const MEDIAS: Readonly<Record<string, MediaExercice>> = {
     },
   },
   'curl-machine': {
-    demo: { youtubeId: 'Tm6m5SV9HkY', duree: 8, vertical: true },
+    demo: { youtubeId: '1RzB7ax79g8', duree: 23, vertical: false },
     video: {
-      youtubeId: 'E4EvKpLKBZ4',
-      titre: 'Comment bien utiliser la machine Curl Pupitre | Biceps massifs | Machine Basic-Fit',
+      youtubeId: '637MoQNkp_M',
+      titre: 'CURL BICEPS : La Technique PARFAITE pour des GROS BRAS !',
       chaine: 'Bodykev Coaching',
+    },
+  },
+  'triceps-halteres': {
+    demo: { youtubeId: 'MBvtzyEef1c', duree: 29, vertical: false },
+    video: {
+      youtubeId: 'KXwQd9DoaVw',
+      titre: 'Extension Triceps Haltères au Front : présentation et erreurs à éviter 💪',
+      chaine: 'ProTrainer',
     },
   },
   'triceps-machine': {

@@ -125,41 +125,43 @@ const PROGRAMME: readonly Omit<Exercice, 'video'>[] = [
     ],
   },
   {
+    // Id gardé : le curl du 19 oct. 2026, déjà noté sous cet id, a été fait aux haltères.
     id: 'curl-machine',
-    nom: 'Curl biceps à la machine',
+    nom: 'Curl biceps aux haltères',
     court: 'Curl',
     typeCharge: 'charge',
-    pasKg: 2.5,
-    rechercheVideo: 'curl biceps machine pupitre technique',
+    pasKg: 2,
+    rechercheVideo: 'curl biceps haltères assis technique',
     machine: {
-      nom: 'Arm Curl (ou Biceps Curl)',
-      aspect: 'Assis, l’arrière des bras posé sur un pupitre incliné, tu plies les bras.',
+      nom: 'Haltères (sur le râtelier)',
+      aspect: '2 haltères, assis au bout d’un banc, à côté du râtelier. Note le poids d’un seul haltère (8 kg, pas 16).',
     },
-    planB: 'Curl aux haltères, assis sur un banc, paumes vers le haut.',
+    planB: 'La machine « Arm Curl » ou « Biceps Curl » si tu en vois une libre.',
     technique: [
-      'Règle le siège : tes coudes sont en face de l’axe qui tourne.',
-      'Arrière des bras bien à plat sur le pupitre.',
-      'Plie les bras en contractant les biceps, sans décoller les coudes.',
+      'Assis au bout d’un banc, dos droit, bras le long du corps, paumes vers l’avant.',
+      'Monte les 2 haltères en pliant les coudes. Les coudes restent collés au corps.',
+      'Pas d’élan : le buste ne bouge pas. Si tu dois te balancer, c’est trop lourd.',
       'Redescends lentement, bras presque tendus.',
     ],
   },
   {
-    id: 'triceps-machine',
-    nom: 'Extension triceps à la machine',
+    id: 'triceps-halteres',
+    nom: 'Extension triceps couché aux haltères',
     court: 'Triceps',
     typeCharge: 'charge',
-    pasKg: 2.5,
-    rechercheVideo: 'extension triceps machine technique',
+    pasKg: 2,
+    rechercheVideo: 'extension triceps couché haltères technique',
     machine: {
-      nom: 'Arm Extension (ou Triceps Extension)',
-      aspect: 'Assis, coudes posés sur un pupitre, tu tends les bras.',
+      nom: 'Haltères + un banc plat',
+      aspect:
+        '2 petits haltères, vers 4 à 6 kg pour commencer, et un banc plat près du râtelier. Pas de machine à chercher : c’est au même endroit que le curl et les élévations.',
     },
-    planB: 'Une autre machine pour les triceps (« Triceps Press », « Seated Dip »).',
+    planB: 'Une machine « Arm Extension » ou « Triceps Extension » si tu en vois une.',
     technique: [
-      'Règle le siège : tes coudes sont en face de l’axe qui tourne.',
-      'Coudes bien posés sur le pupitre : ils ne bougent pas.',
-      'Tends les bras en soufflant, sans verrouiller.',
-      'Reviens lentement.',
+      'Assis au bout du banc, un haltère sur chaque cuisse. Allonge-toi en les gardant contre la poitrine, puis tends les bras au-dessus de toi.',
+      'Paumes face à face, bras à la verticale : les coudes pointent vers le plafond et ne bougent plus.',
+      'Plie seulement les coudes pour descendre les haltères de chaque côté de la tête, lentement.',
+      'Remonte en tendant les bras, sans les verrouiller. Note le poids d’un seul haltère.',
     ],
   },
   {
@@ -340,8 +342,27 @@ const PROGRAMME: readonly Omit<Exercice, 'video'>[] = [
   },
 ]
 
-/** Exercices sortis du programme le 16 oct. 2026 : gardés pour lire l'historique déjà enregistré. */
+/** Exercices sortis du programme (16 et 19 oct. 2026) : gardés pour lire l'historique déjà enregistré. */
 const ANCIENS: readonly Omit<Exercice, 'video'>[] = [
+  {
+    id: 'triceps-machine',
+    nom: 'Extension triceps à la machine',
+    court: 'Triceps',
+    typeCharge: 'charge',
+    pasKg: 2.5,
+    rechercheVideo: 'extension triceps machine technique',
+    machine: {
+      nom: 'Arm Extension (ou Triceps Extension)',
+      aspect: 'Assis, coudes posés sur un pupitre, tu tends les bras.',
+    },
+    planB: 'Une autre machine pour les triceps (« Triceps Press », « Seated Dip »).',
+    technique: [
+      'Règle le siège : tes coudes sont en face de l’axe qui tourne.',
+      'Coudes bien posés sur le pupitre : ils ne bougent pas.',
+      'Tends les bras en soufflant, sans verrouiller.',
+      'Reviens lentement.',
+    ],
+  },
   {
     id: 'tirage-vertical-neutre',
     nom: 'Tirage vertical prise neutre',

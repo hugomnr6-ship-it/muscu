@@ -16,7 +16,7 @@ export const SEANCES: Readonly<Record<SeanceId, Seance>> = {
       { exerciceId: 'rowing-assis-machine', series: 3, reps: [10, 12], reposSec: GROS },
       { exerciceId: 'elevations-laterales-halteres', series: 3, reps: [12, 15], reposSec: ISOLATION },
       { exerciceId: 'curl-machine', series: 3, reps: [10, 12], reposSec: ISOLATION },
-      { exerciceId: 'triceps-machine', series: 3, reps: [10, 12], reposSec: ISOLATION },
+      { exerciceId: 'triceps-halteres', series: 3, reps: [10, 12], reposSec: ISOLATION },
     ],
   },
   B: {
