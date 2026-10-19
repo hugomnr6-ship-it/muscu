@@ -145,23 +145,43 @@ const PROGRAMME: readonly Omit<Exercice, 'video'>[] = [
     ],
   },
   {
-    id: 'triceps-halteres',
-    nom: 'Extension triceps couché aux haltères',
+    id: 'extension-triceps-corde',
+    nom: 'Extension triceps à la poulie haute',
     court: 'Triceps',
     typeCharge: 'charge',
-    pasKg: 2,
-    rechercheVideo: 'extension triceps couché haltères technique',
+    pasKg: 2.5,
+    rechercheVideo: 'extension triceps poulie haute corde technique',
     machine: {
-      nom: 'Haltères + un banc plat',
+      nom: 'Poulie haute (souvent sur un grand portique à câbles)',
       aspect:
-        '2 petits haltères, vers 4 à 6 kg pour commencer, et un banc plat près du râtelier. Pas de machine à chercher : c’est au même endroit que le curl et les élévations.',
+        'Un câble qui descend d’en haut, avec une corde au bout (2 brins avec des embouts) ou une petite barre. Tu es debout, face à la machine.',
     },
-    planB: 'Une machine « Arm Extension » ou « Triceps Extension » si tu en vois une.',
+    planB: 'Le kickback avec un haltère, une main posée sur un banc.',
+    remplacant: 'kickback-haltere',
     technique: [
-      'Assis au bout du banc, un haltère sur chaque cuisse. Allonge-toi en les gardant contre la poitrine, puis tends les bras au-dessus de toi.',
-      'Paumes face à face, bras à la verticale : les coudes pointent vers le plafond et ne bougent plus.',
-      'Plie seulement les coudes pour descendre les haltères de chaque côté de la tête, lentement.',
-      'Remonte en tendant les bras, sans les verrouiller. Note le poids d’un seul haltère.',
+      'Garde ce qui est accroché : la corde ou la petite barre, c’est le même exercice. Règle juste la goupille.',
+      'Debout près du câble, buste un peu penché, coudes collés au corps.',
+      'Pousse vers le bas jusqu’à bras tendus. Avec la corde, écarte un peu les mains en bas.',
+      'Remonte lentement jusqu’à hauteur de poitrine. Seuls les avant-bras bougent.',
+    ],
+  },
+  {
+    id: 'kickback-haltere',
+    nom: 'Kickback avec un haltère',
+    court: 'Kickback',
+    typeCharge: 'charge',
+    pasKg: 1,
+    rechercheVideo: 'kickback triceps haltère banc technique',
+    machine: {
+      nom: 'Un haltère + un banc plat',
+      aspect: 'Un petit haltère, vers 4 à 6 kg pour commencer. Tu poses une main sur un banc, comme pour un rowing.',
+    },
+    planB: 'Fais un autre exo de la liste et reviens à la poulie après.',
+    technique: [
+      'Une main et un genou sur le banc, dos plat. L’haltère dans l’autre main.',
+      'Monte le coude le long du corps : le haut du bras reste collé, parallèle au sol.',
+      'Tends le bras vers l’arrière, marque 1 seconde, puis reviens lentement.',
+      'Fais toutes les reps d’un bras, puis l’autre. Note le poids de l’haltère.',
     ],
   },
   {
@@ -345,6 +365,26 @@ const PROGRAMME: readonly Omit<Exercice, 'video'>[] = [
 /** Exercices sortis du programme (16 et 19 oct. 2026) : gardés pour lire l'historique déjà enregistré. */
 const ANCIENS: readonly Omit<Exercice, 'video'>[] = [
   {
+    id: 'triceps-halteres',
+    nom: 'Extension triceps couché aux haltères',
+    court: 'Triceps',
+    typeCharge: 'charge',
+    pasKg: 2,
+    rechercheVideo: 'extension triceps couché haltères technique',
+    machine: {
+      nom: 'Haltères + un banc plat',
+      aspect:
+        '2 petits haltères, vers 4 à 6 kg pour commencer, et un banc plat près du râtelier. Pas de machine à chercher : c’est au même endroit que le curl et les élévations.',
+    },
+    planB: 'Une machine « Arm Extension » ou « Triceps Extension » si tu en vois une.',
+    technique: [
+      'Assis au bout du banc, un haltère sur chaque cuisse. Allonge-toi en les gardant contre la poitrine, puis tends les bras au-dessus de toi.',
+      'Paumes face à face, bras à la verticale : les coudes pointent vers le plafond et ne bougent plus.',
+      'Plie seulement les coudes pour descendre les haltères de chaque côté de la tête, lentement.',
+      'Remonte en tendant les bras, sans les verrouiller. Note le poids d’un seul haltère.',
+    ],
+  },
+  {
     id: 'triceps-machine',
     nom: 'Extension triceps à la machine',
     court: 'Triceps',
@@ -389,20 +429,6 @@ const ANCIENS: readonly Omit<Exercice, 'video'>[] = [
       'Monte la barre en contractant les biceps, sans bouger les coudes.',
       'Pas d’élan avec le dos.',
       'Redescends lentement jusqu’aux bras presque tendus.',
-    ],
-  },
-  {
-    id: 'extension-triceps-corde',
-    nom: 'Extension triceps à la corde',
-    court: 'Triceps corde',
-    typeCharge: 'charge',
-    pasKg: 2.5,
-    rechercheVideo: 'extension triceps poulie haute corde technique',
-    technique: [
-      'Poulie en haut avec la corde, coudes collés au corps.',
-      'Pousse vers le bas et écarte la corde en fin de mouvement.',
-      'Seuls les avant-bras bougent.',
-      'Remonte lentement jusqu’à hauteur de poitrine.',
     ],
   },
   {

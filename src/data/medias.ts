@@ -235,6 +235,9 @@ export const MEDIAS: Readonly<Record<string, MediaExercice>> = {
       chaine: 'ProTrainer',
     },
   },
+  'kickback-haltere': {
+    demo: { youtubeId: 'vcjeFqS-29k', duree: 15, vertical: true },
+  },
   'triceps-machine': {
     demo: { youtubeId: 'FMOo_3LkRQg', duree: 7, vertical: true },
     video: {
