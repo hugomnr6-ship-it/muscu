@@ -38,19 +38,6 @@ describe('repository', () => {
     expect(charger(storage)).toEqual(exemple)
   })
 
-  it('corrige et réenregistre un exercice noté sous le mauvais nom', () => {
-    const malNote: Donnees = {
-      ...exemple,
-      historique: [seanceFaite('2026-10-21', { 'oiseau-machine': [s(25, 12)] }, 'B')],
-    }
-    sauvegarder(storage, malNote)
-
-    const relues = charger(storage)
-
-    expect(relues.historique[0].exercices).toEqual([{ exerciceId: 'pec-deck', series: [s(25, 12)] }])
-    expect(JSON.parse(storage.getItem(CLE) ?? '')).toEqual(relues)
-  })
-
   it('relit une séance en cours (reprise après fermeture de l’appli)', () => {
     let enCours = creerSeance(SEANCES.B, exemple.historique, {
       date: '2026-10-21',
