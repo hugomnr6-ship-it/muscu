@@ -1,4 +1,5 @@
 import type { Donnees } from '../data/types'
+import { appliquerCorrections } from './corrections'
 import { validerDonnees } from './validation'
 
 export const CLE = 'muscu:donnees'
@@ -22,7 +23,11 @@ export function charger(stockage: Stockage): Donnees {
   if (brut === null) return donneesVides()
   try {
     const donnees = validerDonnees(JSON.parse(brut))
-    if (donnees) return donnees
+    if (donnees) {
+      const corrigees = appliquerCorrections(donnees)
+      if (corrigees !== donnees) sauvegarder(stockage, corrigees)
+      return corrigees
+    }
   } catch {
     // JSON invalide : traité comme des données corrompues ci-dessous.
   }
@@ -50,5 +55,5 @@ export function importer(texte: string): ResultatImport {
   }
   const donnees = validerDonnees((contenu as { donnees?: unknown }).donnees)
   if (!donnees) return { ok: false, erreur: 'La sauvegarde est abîmée : rien n’a été importé.' }
-  return { ok: true, donnees }
+  return { ok: true, donnees: appliquerCorrections(donnees) }
 }
