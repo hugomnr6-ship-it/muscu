@@ -250,8 +250,8 @@ const PROGRAMME: readonly Omit<Exercice, 'video'>[] = [
     pasKg: 2.5,
     rechercheVideo: 'pec deck butterfly machine technique',
     machine: {
-      nom: 'Pectoral (ou Pec Deck, Butterfly)',
-      aspect: 'Assis, bras ouverts sur les côtés, tu ramènes les poignées devant toi.',
+      nom: 'Pectoral, Pec Deck, Butterfly ou « Pectoraux / Deltoïde arrière »',
+      aspect: 'Assis, dos contre le dossier, bras ouverts sur les côtés, tu ramènes les poignées devant toi. C’est souvent la même machine que l’oiseau (2 en 1) : pour les pecs tu t’assois dos au dossier, pour l’oiseau tu t’assois à l’envers. Si les poignées sont devant toi au départ, un petit réglage en haut des bras (levier ou goupille) permet de les ramener sur les côtés.',
     },
     planB: 'La Chest Press, plus légère, 12 à 15 reps.',
     remplacant: 'chest-press',
@@ -270,8 +270,8 @@ const PROGRAMME: readonly Omit<Exercice, 'video'>[] = [
     pasKg: 2.5,
     rechercheVideo: 'oiseau machine pec deck inversé technique',
     machine: {
-      nom: 'Reverse Fly ou Rear Delt (parfois la même machine que le Pec Deck)',
-      aspect: 'Tu t’assois à l’envers, face au dossier, et tu ouvres les bras vers l’arrière.',
+      nom: 'Rear Delt, Reverse Fly ou « Pectoraux / Deltoïde arrière »',
+      aspect: 'Tu t’assois à l’envers, poitrine contre le dossier, et tu ouvres les bras vers l’arrière. C’est souvent la même machine que le pec deck (2 en 1), utilisée dans l’autre sens. Si les poignées sont sur les côtés au départ, un petit réglage en haut des bras (levier ou goupille) permet de les ramener devant toi.',
     },
     planB: 'Le face pull à la poulie, seulement si la corde est déjà accrochée.',
     technique: [
