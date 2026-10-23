@@ -19,7 +19,7 @@ describe('apercuSeance', () => {
 
   it('applique la séance découverte et la semaine légère', () => {
     expect(apercuSeance(SEANCES.C, [], { decouverte: true, allegee: false }).map((e) => e.series)).toEqual(
-      Array(9).fill(2),
+      Array(SEANCES.C.exercices.length).fill(2),
     )
     expect(apercuSeance(SEANCES.C, [], { decouverte: false, allegee: true })[0].series).toBe(3)
   })

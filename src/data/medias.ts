@@ -99,6 +99,14 @@ export const MEDIAS: Readonly<Record<string, MediaExercice>> = {
       chaine: 'Maxime Clergeau - Coach transformations physiques',
     },
   },
+  'souleve-terre-roumain-halteres': {
+    demo: { youtubeId: 'ptC8v7bfIcA', duree: 9, vertical: true },
+    video: {
+      youtubeId: 'hyBx3QViCw8',
+      titre: 'Deadlift roumain avec haltères : Execution, technique, conseils et progression',
+      chaine: '15-Minute Challenge',
+    },
+  },
   'leg-curl-assis': {
     demo: { youtubeId: 'v7WGxUT9rzM', duree: 7, vertical: true },
     video: {

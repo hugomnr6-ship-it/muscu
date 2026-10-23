@@ -224,22 +224,24 @@ const PROGRAMME: readonly Omit<Exercice, 'video'>[] = [
     ],
   },
   {
-    id: 'leg-curl-assis',
-    nom: 'Leg curl assis',
-    court: 'Leg curl',
+    // Remplace le leg curl (pas de machine dans sa salle) et les lombaires au banc : il travaille les deux.
+    id: 'souleve-terre-roumain-halteres',
+    nom: 'Soulevé de terre roumain aux haltères',
+    court: 'SDT roumain',
     typeCharge: 'charge',
-    pasKg: 2.5,
-    rechercheVideo: 'leg curl assis machine technique',
+    pasKg: 2,
+    rechercheVideo: 'soulevé de terre roumain haltères technique',
     machine: {
-      nom: 'Leg Curl (ou Seated Leg Curl)',
-      aspect: 'Assis, jambes tendues posées sur un boudin, un 2e boudin bloque tes cuisses. Tu plies les jambes vers le bas.',
+      nom: 'Haltères (sur le râtelier)',
+      aspect: '2 haltères, vers 8 à 10 kg chacun pour commencer. Tu le fais debout, à côté du râtelier, comme le curl. Note le poids d’un seul haltère (10 kg, pas 20).',
     },
-    planB: 'Le leg curl allongé sur le ventre (« Prone Leg Curl »).',
+    planB: 'Prends la paire juste en dessous et fais 2 ou 3 reps de plus.',
     technique: [
-      'Genoux en face de l’axe qui tourne, boudin juste au-dessus des chevilles.',
-      'Bloque bien les cuisses sous l’appui.',
-      'Plie les jambes au maximum en contractant l’arrière des cuisses.',
-      'Reviens lentement.',
+      'Debout, pieds à largeur de bassin, un haltère dans chaque main contre les cuisses. Genoux un peu pliés : ils restent comme ça.',
+      'Pousse les fesses loin vers l’arrière, comme pour fermer une porte avec les fesses. Les haltères glissent le long des jambes.',
+      'Dos bien droit, regard vers le sol 2 m devant toi. Arrête-toi quand l’arrière des cuisses tire, vers le milieu des tibias.',
+      'Remonte en poussant les hanches vers l’avant et en serrant les fesses, sans te pencher en arrière.',
+      'Tu sens surtout le bas du dos ? Descends moins bas et prends plus léger : ça doit tirer derrière les cuisses.',
     ],
   },
   {
@@ -322,25 +324,6 @@ const PROGRAMME: readonly Omit<Exercice, 'video'>[] = [
     ],
   },
   {
-    id: 'lombaires-45',
-    nom: 'Lombaires au banc à 45°',
-    court: 'Lombaires',
-    typeCharge: 'poidsDuCorps',
-    pasKg: 2.5,
-    rechercheVideo: 'extension lombaire banc 45 degrés technique',
-    machine: {
-      nom: 'Banc à lombaires (Back Extension, 45°)',
-      aspect: 'Un banc incliné : tes chevilles sont bloquées sous des boudins, tes hanches sur un coussin, et ton buste dépasse dans le vide.',
-    },
-    planB: 'Saute-les ce jour-là, ce n’est pas grave.',
-    technique: [
-      'Règle le coussin juste sous les hanches : tu dois pouvoir plier au niveau du bassin.',
-      'Bras croisés sur la poitrine, dos droit.',
-      'Descends lentement en pliant aux hanches, puis remonte jusqu’à être aligné, sans te cambrer.',
-      'Au poids du corps, c’est sans danger. Trop facile ? Va plus lentement avant de penser à ajouter un poids.',
-    ],
-  },
-  {
     id: 'releves-jambes-chaise-romaine',
     nom: 'Relevés de jambes (chaise romaine)',
     court: 'Relevés jambes',
@@ -362,8 +345,46 @@ const PROGRAMME: readonly Omit<Exercice, 'video'>[] = [
   },
 ]
 
-/** Exercices sortis du programme (16 et 19 oct. 2026) : gardés pour lire l'historique déjà enregistré. */
+/** Exercices sortis du programme (16, 19 et 23 oct. 2026) : gardés pour lire l'historique déjà enregistré. */
 const ANCIENS: readonly Omit<Exercice, 'video'>[] = [
+  {
+    id: 'leg-curl-assis',
+    nom: 'Leg curl assis',
+    court: 'Leg curl',
+    typeCharge: 'charge',
+    pasKg: 2.5,
+    rechercheVideo: 'leg curl assis machine technique',
+    machine: {
+      nom: 'Leg Curl (ou Seated Leg Curl)',
+      aspect: 'Assis, jambes tendues posées sur un boudin, un 2e boudin bloque tes cuisses. Tu plies les jambes vers le bas.',
+    },
+    planB: 'Le leg curl allongé sur le ventre (« Prone Leg Curl »).',
+    technique: [
+      'Genoux en face de l’axe qui tourne, boudin juste au-dessus des chevilles.',
+      'Bloque bien les cuisses sous l’appui.',
+      'Plie les jambes au maximum en contractant l’arrière des cuisses.',
+      'Reviens lentement.',
+    ],
+  },
+  {
+    id: 'lombaires-45',
+    nom: 'Lombaires au banc à 45°',
+    court: 'Lombaires',
+    typeCharge: 'poidsDuCorps',
+    pasKg: 2.5,
+    rechercheVideo: 'extension lombaire banc 45 degrés technique',
+    machine: {
+      nom: 'Banc à lombaires (Back Extension, 45°)',
+      aspect: 'Un banc incliné : tes chevilles sont bloquées sous des boudins, tes hanches sur un coussin, et ton buste dépasse dans le vide.',
+    },
+    planB: 'Saute-les ce jour-là, ce n’est pas grave.',
+    technique: [
+      'Règle le coussin juste sous les hanches : tu dois pouvoir plier au niveau du bassin.',
+      'Bras croisés sur la poitrine, dos droit.',
+      'Descends lentement en pliant aux hanches, puis remonte jusqu’à être aligné, sans te cambrer.',
+      'Au poids du corps, c’est sans danger. Trop facile ? Va plus lentement avant de penser à ajouter un poids.',
+    ],
+  },
   {
     id: 'triceps-halteres',
     nom: 'Extension triceps couché aux haltères',

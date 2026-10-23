@@ -34,7 +34,7 @@ describe('programme', () => {
   })
 
   it('garde les exercices déjà enregistrés pour relire l’historique', () => {
-    for (const ancien of ['hack-squat', 'extension-lombaire-45', 'mollets-machine', 'elevations-laterales-poulie', 'leg-curl-allonge', 'rowing-machine-neutre', 'lombaires-machine', 'triceps-machine', 'triceps-halteres']) {
+    for (const ancien of ['hack-squat', 'extension-lombaire-45', 'mollets-machine', 'elevations-laterales-poulie', 'leg-curl-allonge', 'rowing-machine-neutre', 'lombaires-machine', 'triceps-machine', 'triceps-halteres', 'leg-curl-assis', 'lombaires-45']) {
       expect(EXERCICES.has(ancien), ancien).toBe(true)
     }
   })

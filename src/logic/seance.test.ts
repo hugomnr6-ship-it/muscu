@@ -19,7 +19,7 @@ function nouvelle(options: Partial<Parameters<typeof creerSeance>[2]> = {}, hist
 describe('creerSeance', () => {
   it('prépare 2 séries par exercice pour la séance découverte, charges à 0', () => {
     const seance = creerSeance(SEANCES.C, [], { date: '2026-10-16', now: NOW, decouverte: true, allegee: false })
-    expect(seance.exercices).toHaveLength(9)
+    expect(seance.exercices).toHaveLength(SEANCES.C.exercices.length)
     expect(seance.exercices.every((e) => e.series.length === 2)).toBe(true)
     expect(seance.exercices[0].series[0]).toEqual({ kg: 0, reps: 10, faite: false })
     expect(seance).toMatchObject({ seanceId: 'C', index: 0, reposFinA: null, decouverte: true })
