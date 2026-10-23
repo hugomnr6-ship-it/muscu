@@ -99,12 +99,12 @@ export const MEDIAS: Readonly<Record<string, MediaExercice>> = {
       chaine: 'Maxime Clergeau - Coach transformations physiques',
     },
   },
-  'souleve-terre-roumain-halteres': {
-    demo: { youtubeId: 'ptC8v7bfIcA', duree: 9, vertical: true },
+  'presse-pieds-hauts': {
+    demo: { youtubeId: 'Y18Ife2HqC0', duree: 18, vertical: true },
     video: {
-      youtubeId: 'hyBx3QViCw8',
-      titre: 'Deadlift roumain avec haltères : Execution, technique, conseils et progression',
-      chaine: '15-Minute Challenge',
+      youtubeId: 'viB81D-BHsk',
+      titre: 'Leg press pieds hauts : l’exercice pour cibler les fessiers',
+      chaine: 'AM Coaching',
     },
   },
   'leg-curl-assis': {

@@ -224,24 +224,23 @@ const PROGRAMME: readonly Omit<Exercice, 'video'>[] = [
     ],
   },
   {
-    // Remplace le leg curl (pas de machine dans sa salle) et les lombaires au banc : il travaille les deux.
-    id: 'souleve-terre-roumain-halteres',
-    nom: 'Soulevé de terre roumain aux haltères',
-    court: 'SDT roumain',
+    // Remplace le leg curl : pas de machine dans sa salle. Id à part pour ne pas mélanger avec la presse normale.
+    id: 'presse-pieds-hauts',
+    nom: 'Presse à cuisses, pieds hauts',
+    court: 'Presse pieds hauts',
     typeCharge: 'charge',
-    pasKg: 2,
-    rechercheVideo: 'soulevé de terre roumain haltères technique',
+    pasKg: 5,
+    rechercheVideo: 'presse à cuisses pieds hauts fessiers ischios',
     machine: {
-      nom: 'Haltères (sur le râtelier)',
-      aspect: '2 haltères, vers 8 à 10 kg chacun pour commencer. Tu le fais debout, à côté du râtelier, comme le curl. Note le poids d’un seul haltère (10 kg, pas 20).',
+      nom: 'Leg Press (la même que pour la presse)',
+      aspect: 'Tu ne changes pas de machine : seuls tes pieds montent en haut de la plaque.',
     },
-    planB: 'Prends la paire juste en dessous et fais 2 ou 3 reps de plus.',
+    planB: 'Une autre presse : il y en a souvent plusieurs.',
     technique: [
-      'Debout, pieds à largeur de bassin, un haltère dans chaque main contre les cuisses. Genoux un peu pliés : ils restent comme ça.',
-      'Pousse les fesses loin vers l’arrière, comme pour fermer une porte avec les fesses. Les haltères glissent le long des jambes.',
-      'Dos bien droit, regard vers le sol 2 m devant toi. Arrête-toi quand l’arrière des cuisses tire, vers le milieu des tibias.',
-      'Remonte en poussant les hanches vers l’avant et en serrant les fesses, sans te pencher en arrière.',
-      'Tu sens surtout le bas du dos ? Descends moins bas et prends plus léger : ça doit tirer derrière les cuisses.',
+      'Pieds en haut de la plaque, à largeur de bassin. Les talons restent bien posés, ils ne dépassent pas.',
+      'Commence un peu plus léger que ta presse normale : les cuisses travaillent moins, les fessiers plus.',
+      'Descends lentement en gardant le bas du dos collé au dossier. S’il décolle en bas, descends moins.',
+      'Pousse avec les talons, sans verrouiller les genoux en haut. Tu dois sentir les fessiers et l’arrière des cuisses.',
     ],
   },
   {
